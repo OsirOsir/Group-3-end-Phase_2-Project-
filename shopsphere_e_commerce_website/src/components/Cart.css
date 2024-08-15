@@ -109,3 +109,7 @@
     display: block;
     margin-top: 20px;
   }
+
+  .cart-quantity{
+    font-size: 18px;
+  }
