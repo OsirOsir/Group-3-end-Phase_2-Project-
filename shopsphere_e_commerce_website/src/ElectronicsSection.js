@@ -54,3 +54,4 @@ const ElectronicsSection = () => {
 };
 
 export default ElectronicsSection;
+

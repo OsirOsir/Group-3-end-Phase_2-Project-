@@ -3,15 +3,15 @@
       {
         "id": 1,
         "description": "Running Shoes",
-        "price": "KSh 2,000",
-        "originalPrice": "KSh 2,500",
+        "price": "2,000",
+        "originalPrice": "2,500",
         "image": "/images/RS.jpeg"
       },
       {
         "id": 2,
         "description": "Casual Shoes",
-        "price": "KSh 9,500",
-        "originalPrice": "KSh 11,000",
+        "price": "9,500",
+        "originalPrice": "11,000",
         "image": "/images/CS.webp"
       },
       {
@@ -24,15 +24,15 @@
       {
         "id": 4,
         "description": "Sneakers",
-        "price": "KSh 5,500",
-        "originalPrice": "KSh 6,000",
+        "price": "5,500",
+        "originalPrice": "6,000",
         "image": "/images/Sneakers.jpg"
       },
       {
         "id": 5,
         "description": "Boots",
-        "price": "KSh 5,000",
-        "originalPrice": "KSh 6,000",
+        "price": "5,000",
+        "originalPrice": "6,000",
         "image": "/images/Boots.jpg"
       }
     ],
@@ -40,36 +40,36 @@
       {
         "id": 1,
         "description": "Smartphone",
-        "price": "KSh 35,000",
-        "originalPrice": "KSh 40,000",
+        "price": "35,000",
+        "originalPrice": "40,000",
         "image": "/images/SP.webp"
       },
       {
         "id": 2,
         "description": "Laptop",
-        "price": "KSh 60,000",
-        "originalPrice": "KSh 70,000",
+        "price": "60,000",
+        "originalPrice": "70,000",
         "image": "/images/LP.webp"
       },
       {
         "id": 3,
         "description": "Headphones",
-        "price": "KSh 5,000",
-        "originalPrice": "KSh 6,500",
+        "price": "5,000",
+        "originalPrice": "6,500",
         "image": "/images/HP.jpg"
       },
       {
         "id": 4,
         "description": "Smartwatch",
-        "price": "KSh 12,000",
-        "originalPrice": "KSh 15,000",
+        "price": "12,000",
+        "originalPrice": "15,000",
         "image": "/images/SW.webp"
       },
       {
         "id": 5,
         "description": "Tablet",
-        "price": "KSh 22,000",
-        "originalPrice": "KSh 25,000",
+        "price": "22,000",
+        "originalPrice": "25,000",
         "image": "/images/Tablet.jpg"
       }
     ]
