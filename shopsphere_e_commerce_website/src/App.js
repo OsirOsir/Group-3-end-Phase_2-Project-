@@ -5,6 +5,9 @@ import Cartlist from './components/CartList';
 import './App.css';
 import './components/Cart.css';
 import './components/FlashSale.css';
+import Book from './components/Book';
+import Artwork from './components/Artwork';
+import Cart from './Cart';
 
 import Navbar from './components/Navbar'
 import Categories from './components/Categories';
@@ -14,6 +17,16 @@ function App() {
   const [ flashSaleItems, setFlashSaleItems ] = useState([]);
   const [ hotItems, setHotItems ] = useState([]);
   const [ cart, setCart ] = useState([]);
+  
+
+  const addToCart = item => {
+    setCart([...cart, item]);
+  };
+  
+
+  const removeFromCart = itemId => {
+    setCart(cart.filter(item => item.id !== itemId));
+  };
 
   useEffect(() => {
     fetch("http://localhost:8001/flashSale")
@@ -47,7 +60,11 @@ function App() {
       <FlashSale flashSaleItems={flashSaleItems} cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart} />
       <HotInCategory hotItems={hotItems} cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart}/>
       <Cartlist cart={cart} onRemoveFromCart={handleRemoveFromCart}/>
-      
+      <div className="containers">
+        <Book addToCart={addToCart} />
+        <Artwork addToCart={addToCart} />
+      </div>
+      <Cart cartItems={cart} removeFromCart={removeFromCart} />
     </div>
   );
 }
