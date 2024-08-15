@@ -8,6 +8,8 @@ import './components/FlashSale.css';
 import Book from './components/Book';
 import Artwork from './components/Artwork';
 import Cart from './Cart';
+import ShoesSection from './ShoesSection';
+import ElectronicsSection from './ElectronicsSection';
 
 import Navbar from './components/Navbar'
 import Categories from './components/Categories';
@@ -64,6 +66,8 @@ function App() {
         <Book addToCart={addToCart} />
         <Artwork addToCart={addToCart} />
       </div>
+      <ShoesSection />
+        <ElectronicsSection />
       <Cart cartItems={cart} removeFromCart={removeFromCart} />
     </div>
   );
