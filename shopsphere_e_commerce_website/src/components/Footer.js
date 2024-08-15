@@ -10,7 +10,7 @@ function Footer() {
           <div className='footer-details'>
           <div className="footer-links">
             <h4>Quick Links</h4>
-            <ul>
+            <ul className='links'>
               <li><a href="/shop">Shop</a></li>
               <li><a href="/about">About</a></li>
               <li><a href="/contact">Contact Us</a></li>

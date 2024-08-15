@@ -7,7 +7,7 @@ const FAQ = () => {
   const faqs = [
     {
       question: 'What payment methods do you accept?',
-      answer: 'We accept a variety of payment methods, including Visa, MasterCard, American Express, PayPal, and Apple Pay. You can choose your preferred payment option at checkout.'
+      answer: 'We accept a variety of payment methods, including Visa, MasterCard, M-PESA, Airtel Money and Lipa Mdogo Mdogo. You can choose your preferred payment option at checkout.'
     },
     {
       question: 'How can I track my order?',
@@ -19,7 +19,7 @@ const FAQ = () => {
     },
     {
       question: 'Do you offer international shipping?',
-      answer: 'Yes, we offer international shipping to select countries. Shipping costs and delivery times vary depending on the destination. You can see the available shipping options and costs at checkout.'
+      answer: 'No, at the moment we only offer local shipping Within Kenya. Shipping costs and delivery times vary depending on the destination. You can see the available shipping options and costs at checkout.'
     }
   ];
 

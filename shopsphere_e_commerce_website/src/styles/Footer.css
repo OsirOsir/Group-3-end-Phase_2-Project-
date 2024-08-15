@@ -8,10 +8,12 @@
   right: 0;
   left: 0;
   
+  
 }
 
 .footer-container {
   display: flex;
+  padding: 0 0 0 20px;
 }
 .footer-details{
   display: flex;
@@ -40,14 +42,8 @@ font-family: URW Chancery L, cursive;
   margin-bottom: 15px;
   font-weight: bolder;
 }
-.footer-name .title{
-  font-size: 58px;
-  color: white;
- 
-}
-.footer-links{
 
-}
+
 .footer p, .footer ul, .footer a {
   font-size: 18px;
   color: #1a1515;
@@ -61,6 +57,9 @@ font-family: URW Chancery L, cursive;
 
 .footer li{
   color: white;
+}
+.links li:hover{
+ color: gray !important;
 }
 
 .footer a {
