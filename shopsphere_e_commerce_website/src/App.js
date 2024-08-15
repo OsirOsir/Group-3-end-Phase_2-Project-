@@ -1,12 +1,15 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import ShoesSection from './ShoesSection';
+import ElectronicsSection from './ElectronicsSection';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        
-      </header>
+     <main>
+        <ShoesSection />
+        <ElectronicsSection />
+      </main>
     </div>
   );
 }
