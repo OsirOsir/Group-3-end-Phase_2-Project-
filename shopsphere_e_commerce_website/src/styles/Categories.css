@@ -1,0 +1,31 @@
+.categories-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 0px 700px ;
+
+  
+  padding: 10px;
+  border-radius: 30px;
+  max-width: 50%;
+ 
+}
+
+.category-item {
+  background-color: rgba(223, 116, 55, 0.5);
+  color: #4a2c1d; 
+  padding: 10px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.category-item:hover {
+  background-color: #edd4c0; /* Slightly darker shade on hover */
+}
+
+.dropdown-icon {
+  margin-left: 8px;
+  font-size: 12px;
+}
