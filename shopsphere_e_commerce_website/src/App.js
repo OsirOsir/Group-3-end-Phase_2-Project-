@@ -3,6 +3,8 @@ import FlashSale from './components/FlashSale';
 import HotInCategory from './components/HotInCategory';
 import Cartlist from './components/CartList';
 import './App.css';
+
+import Footer from './components/Footer';
 import './components/Cart.css';
 import './components/FlashSale.css';
 import Book from './components/Book';
@@ -69,6 +71,7 @@ function App() {
       <ShoesSection />
         <ElectronicsSection />
       <Cart cartItems={cart} removeFromCart={removeFromCart} />
+      <Footer />
     </div>
   );
 }
