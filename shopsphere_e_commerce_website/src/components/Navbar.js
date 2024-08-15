@@ -9,7 +9,7 @@ function Navbar() {
   return (
     <div className="shopsphere-header">
       <div className="shopsphere-header-left-section">
-        <p>Shopsphere</p>
+        <p>SHOPSPHERE</p>
       </div>
 
       <div className="shopsphere-header-middle-section">
@@ -32,7 +32,6 @@ function Navbar() {
         </a>
         <a className="help-link" href="help.html">
           <button className="help-button">
-            {/* <img className="help-icon" src={helpIcon} alt="Help Icon" /> */}
             Help
           </button>
         </a>
