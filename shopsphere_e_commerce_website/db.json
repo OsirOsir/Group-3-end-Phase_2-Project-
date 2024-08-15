@@ -220,5 +220,79 @@
             "price": 3999,
             "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg/800px-Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg"
         }
+    ],
+    "shoes": [
+      {
+        "id": 1,
+        "description": "Running Shoes",
+        "price": "2,000",
+        "originalPrice": "2,500",
+        "image": "/images/RS.jpeg"
+      },
+      {
+        "id": 2,
+        "description": "Casual Shoes",
+        "price": "9,500",
+        "originalPrice": "11,000",
+        "image": "/images/CS.webp"
+      },
+      {
+        "id": 3,
+        "description": "Formal Shoes",
+        "price": "KSh 6,000",
+        "originalPrice": "KSh 8,000",
+        "image": "/images/FS.jpg"
+      },
+      {
+        "id": 4,
+        "description": "Sneakers",
+        "price": "5,500",
+        "originalPrice": "6,000",
+        "image": "/images/Sneakers.jpg"
+      },
+      {
+        "id": 5,
+        "description": "Boots",
+        "price": "5,000",
+        "originalPrice": "6,000",
+        "image": "/images/Boots.jpg"
+      }
+    ],
+    "electronics": [
+      {
+        "id": 1,
+        "description": "Smartphone",
+        "price": "35,000",
+        "originalPrice": "40,000",
+        "image": "/images/SP.webp"
+      },
+      {
+        "id": 2,
+        "description": "Laptop",
+        "price": "60,000",
+        "originalPrice": "70,000",
+        "image": "/images/LP.webp"
+      },
+      {
+        "id": 3,
+        "description": "Headphones",
+        "price": "5,000",
+        "originalPrice": "6,500",
+        "image": "/images/HP.jpg"
+      },
+      {
+        "id": 4,
+        "description": "Smartwatch",
+        "price": "12,000",
+        "originalPrice": "15,000",
+        "image": "/images/SW.webp"
+      },
+      {
+        "id": 5,
+        "description": "Tablet",
+        "price": "22,000",
+        "originalPrice": "25,000",
+        "image": "/images/Tablet.jpg"
+      }
     ]
 }
