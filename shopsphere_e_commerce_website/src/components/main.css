@@ -1,0 +1,49 @@
+.App {
+    text-align: center;
+  }
+  
+  /* The overall component container with the beige background */
+.flash-sale-container, .hot-in-category-container{
+    background-color: #F8F0E8;
+    border-radius: 20px;
+    margin: 30px 400px 50px;
+}
+  
+  /* Individual item cards */
+  .flash-sale-card, .hot-in-category-card{
+    background-color: #ffffff;
+    padding: 10px;
+    width: 180px;
+    height: 350px;
+    margin: 15px 10px;
+    text-align: left;
+    border-radius: 10px;
+}
+
+/* Size of images in each item card */
+  .flash-sale-card img, .hot-in-category-card img{
+    height: 200px;
+    width: 180px;
+  }
+
+  /* Product description details of each item in the item card  */
+  .flash-sale-card h4, .hot-in-category-card h4{
+    margin-bottom: 0px;
+    font-size: 15px;
+  }
+  
+  /* Product price details of each item in the item card  */
+  .flash-sale-prices p{
+    margin-right: 10px;
+  }
+
+  /* Add to cart button in each item card */
+  .flash-sale-card button, .hot-in-category-card button{
+    color: #C15F08;
+    text-decoration: underline;
+    border: none;
+    background-color: #ffffff;
+    margin-bottom: 5px;
+  }
+  
+  
