@@ -1,11 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import FlashSale from './components/FlashSale';
-import HotInCategory from './components/HotInCategory';
-import Cartlist from './components/CartList';
 import './App.css';
-import './components/Cart.css';
-import './components/FlashSale.css';
-
+import Navbar from './components/Navbar'
+import Categories from './components/Categories';
 
 function App() {
 
@@ -37,12 +32,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>SHOPSPHERE</h1>
-        <button className="cart-button">View Cart</button>
+      <Navbar />
       </header>
-      <FlashSale flashSaleItems={flashSaleItems} cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart} />
-      <HotInCategory hotItems={hotItems} cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart}/>
-      <Cartlist cart={cart} onRemoveFromCart={handleRemoveFromCart}/>
+      <Categories />
     </div>
   );
 }
