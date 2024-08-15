@@ -37,7 +37,7 @@ function Footer() {
           </div>
         </div>
         <div class="footer-bottom">
-          <p>&copy; 2024 YourCompanyName. All rights reserved.</p>
+          <p>&copy; 2024 ShopSphere. All rights reserved.</p>
         </div>
       </footer>
 
