@@ -1,6 +1,6 @@
 .footer {
   position: fixed;
-  background-color: #df7437;
+  background-color: #402013;
   padding: 40px 20px;
   color: #1a1515;
   text-align: left;
@@ -47,7 +47,7 @@ font-family: URW Chancery L, cursive;
 
 .footer p, .footer ul, .footer a {
   font-size: 18px;
-  color: #1a1515;
+  color: #000000;
   margin: 5px 0;
 }
 
