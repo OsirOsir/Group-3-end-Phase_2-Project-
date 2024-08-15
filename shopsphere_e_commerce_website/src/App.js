@@ -43,10 +43,11 @@ function App() {
         <button className="cart-button">View Cart</button>
       <Navbar />
       </header>
+      <Categories />
       <FlashSale flashSaleItems={flashSaleItems} cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart} />
       <HotInCategory hotItems={hotItems} cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart}/>
       <Cartlist cart={cart} onRemoveFromCart={handleRemoveFromCart}/>
-      <Categories />
+      
     </div>
   );
 }

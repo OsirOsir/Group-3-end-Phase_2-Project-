@@ -1,0 +1,78 @@
+/* Books, Artwork, Cart and Item css underhere */
+.App {
+  text-align: center;
+  /* padding: 0px; */
+}
+
+.containers {
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 250px 50px;
+  border-radius: 20px;
+  margin: 30px auto; /* Center the containers horizontally */
+  width: 90%; /* Relative width for scaling */
+  max-width: 1200px; /* Optional max-width for large screens */
+}
+
+.book-container, .artwork-container {
+  width: 100%; /* Adjusted width to fit within the viewport */
+  background-color: #f8f0e8;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 1px 25px;
+  text-align: left;
+}
+
+.items-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding: 10px 10px;
+}
+
+.item-card {
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.item-card img {
+  /* max-width: 100%;
+  height: auto;
+  border-radius: 8px; */
+  height: 140px;
+  width: 180px;
+}
+
+.item-card button {
+  color: #c15f08;
+  text-decoration: underline;
+  border: none;
+  background-color: #ffffff;
+  margin-bottom: 5px;
+  text-align: left;  
+  display: block;   
+  width: fit-content; 
+  margin-left: 0;  
+}
+
+.item-card p {
+  margin-right: 10px;
+  margin-top: 0px;
+  text-align: left;
+}
+
+.item-card h4 {
+  margin-bottom: 0px;
+  font-size: 15px;
+  text-align: left; 
+}
+
+.subhead {
+  margin-bottom: 0px;
+  font-size: 15px;
+}
+
+/* Books, Artwork, Cart and Item css up to this point */
