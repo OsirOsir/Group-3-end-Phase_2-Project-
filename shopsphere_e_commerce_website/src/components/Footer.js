@@ -4,13 +4,11 @@ import '../styles/Footer.css'
 function Footer() {
   return (
     <div>
-      <footer class="footer">
-        <div class="footer-container">
-          <div class="footer-about">
-            <h4>About Us</h4>
-            <p>Your go-to platform for the latest and greatest in fashion, electronics, and home essentials. Shop with confidence and style!</p>
-          </div>
-          <div class="footer-links">
+      <footer className="footer">
+        <div className="footer-container">
+        <h4 className='title'>SHOPSPHERE</h4>
+          <div className='footer-details'>
+          <div className="footer-links">
             <h4>Quick Links</h4>
             <ul>
               <li><a href="/shop">Shop</a></li>
@@ -19,7 +17,7 @@ function Footer() {
               <li><a href="/faq">FAQ</a></li>
             </ul>
           </div>
-          <div class="footer-support">
+          <div className="footer-support">
             <h4>Customer Support</h4>
             <ul>
               <li><a href="/shipping">Shipping & Delivery</a></li>
@@ -28,15 +26,17 @@ function Footer() {
               <li><a href="/terms">Terms of Service</a></li>
             </ul>
           </div>
-          <div class="footer-social">
+          <div className="footer-social">
             <h4>Follow Us</h4>
-            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" className="social-icon"><i className="fab fa-facebook-f"></i></a>
+            <a href="#" className="social-icon"><i className="fab fa-twitter"></i></a>
+            <a href="#" className="social-icon"><i className="fab fa-instagram"></i></a>
+            <a href="#" className="social-icon"><i className="fab fa-linkedin-in"></i></a>
           </div>
+          </div>
+          
         </div>
-        <div class="footer-bottom">
+        <div className="footer-bottom">
           <p>&copy; 2024 ShopSphere. All rights reserved.</p>
         </div>
       </footer>
