@@ -12,7 +12,7 @@ import Artwork from './components/Artwork';
 import Cart from './Cart';
 import ShoesSection from './ShoesSection';
 import ElectronicsSection from './ElectronicsSection';
-
+import FAQ from './components/FAQ';
 import Navbar from './components/Navbar'
 import Categories from './components/Categories';
 
@@ -71,6 +71,7 @@ function App() {
       <ShoesSection />
         <ElectronicsSection />
       <Cart cartItems={cart} removeFromCart={removeFromCart} />
+      <FAQ />
       <Footer />
     </div>
   );
