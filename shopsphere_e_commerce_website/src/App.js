@@ -5,10 +5,10 @@ import Categories from './components/Categories';
 function App() {
   return (
     <div className="App">
-      <Navbar />
       <header className="App-header">
-        <Categories />
+      <Navbar />
       </header>
+      <Categories />
     </div>
   );
 }
