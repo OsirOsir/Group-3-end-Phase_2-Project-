@@ -6,7 +6,7 @@ const ElectronicsSection = () => {
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5500/electronics')
+    fetch('http://localhost:8001/electronics')
       .then(response => response.json())
       .then(data => setElectronicsData(data))
       .catch(error => console.error('Error fetching data:', error));
