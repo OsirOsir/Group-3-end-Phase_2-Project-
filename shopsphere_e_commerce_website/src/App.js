@@ -67,8 +67,6 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>SHOPSPHERE</h1>
-        <button className="cart-button">View Cart</button>
       <Navbar />
       </header>
       <Categories />
