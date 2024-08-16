@@ -29,7 +29,7 @@ const Navbar = () => {
   const handleAuthButtonClick = () => {
     if (isLoggedIn) {
       // Handle logout
-      localStorage.removeItem('user'); // or any other method to log the user out
+      localStorage.removeItem('user'); 
       setIsLoggedIn(false);
       alert("Logged out successfully"); // Alert on successful logout
     } else {
