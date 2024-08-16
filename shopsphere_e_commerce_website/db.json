@@ -374,9 +374,9 @@
       "originalPrice": "25,000",
       "image": "/images/Tablet.jpg"
     }
-  ]
-}
-{ "clothes": [
+  ],
+
+"clothes": [
   {
     "id": 1,
     "name": "Casual T-Shirt",
