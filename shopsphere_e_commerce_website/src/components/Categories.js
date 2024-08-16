@@ -5,6 +5,8 @@ import ElectronicsSection from '../ElectronicsSection';
 import ShoesSection from '../ShoesSection';
 import Artwork from './Artwork';
 import Book from './Book';
+import ClothesSection from './ClothesSection'
+
 
 function Categories()   {
   const categories = ["Clothes", "Shoes", "Artwork", "Electronics", "Books"];
@@ -16,6 +18,8 @@ function Categories()   {
 
   const renderCategoryContent = () => {
     switch (activeCategory) {
+      case "Clothes":
+        return <ClothesSection />;
       case "Electronics":
         return <ElectronicsSection />;
       case "Shoes":
