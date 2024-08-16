@@ -1,7 +1,10 @@
+
 import React, { useState, useEffect } from 'react';
 import FlashSale from './components/FlashSale';
 import HotInCategory from './components/HotInCategory';
 import Cartlist from './components/CartList';
+import ClothesSection from './components/ClothesSection';
+import WhatsNew from './components/WhatsNew';
 import './App.css';
 
 import Footer from './components/Footer';
@@ -21,6 +24,9 @@ function App() {
   const [ flashSaleItems, setFlashSaleItems ] = useState([]);
   const [ hotItems, setHotItems ] = useState([]);
   const [ cart, setCart ] = useState([]);
+  const [products, setProducts] = useState([]);  // Add setProducts here
+  const [showClothes, setShowClothes] = useState(true);
+  const [showWhatsNew, setShowWhatsNew] = useState(false);
   
 
   const addToCart = item => {
@@ -31,6 +37,11 @@ function App() {
   const removeFromCart = itemId => {
     setCart(cart.filter(item => item.id !== itemId));
   };
+  useEffect(() => {
+    fetch('http://localhost:5500/products')
+      .then(response => response.json())
+      .then(data => setProducts(data));  // Use setProducts here
+  }, []);
 
   useEffect(() => {
     fetch("http://localhost:8001/flashSale")
@@ -64,7 +75,13 @@ function App() {
       <FlashSale flashSaleItems={flashSaleItems} cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart} />
       <HotInCategory hotItems={hotItems} cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart}/>
       <Cartlist cart={cart} onRemoveFromCart={handleRemoveFromCart}/>
-      <div className="containers">
+      <nav>
+        <button onClick={() => { setShowClothes(true); setShowWhatsNew(false); }}>Clothes</button>
+        <button onClick={() => { setShowClothes(false); setShowWhatsNew(true); }}>What's New</button>
+      </nav>
+      {showClothes && <ClothesSection />}
+      {showWhatsNew && <WhatsNew />}
+        <div className="containers">
         <Book addToCart={addToCart} />
         <Artwork addToCart={addToCart} />
       </div>
@@ -77,5 +94,7 @@ function App() {
   );
 }
 
+
 export default App;
+
 
