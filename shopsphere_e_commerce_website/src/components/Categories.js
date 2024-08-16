@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import '../styles/Categories.css';
 
+import ElectronicsSection from '../ElectronicsSection';
+import ShoesSection from '../ShoesSection';
+import Artwork from './Artwork';
+import Book from './Book';
+
 function Categories()   {
   const categories = ["Clothes", "Shoes", "Artwork", "Electronics", "Books"];
   const [activeCategory, setActiveCategory] = useState(null);
@@ -8,6 +13,22 @@ function Categories()   {
   const handleCategoryClick = (category) => {
     setActiveCategory(category);
   };
+
+  const renderCategoryContent = () => {
+    switch (activeCategory) {
+      case "Electronics":
+        return <ElectronicsSection />;
+      case "Shoes":
+        return <ShoesSection />;
+      case "Artwork":
+        return <Artwork />;
+      case "Books":
+        return <Book />;
+      default:
+        return <p>Please select a category.</p>;
+    }
+  };
+
 
   return (
     <div>
@@ -25,13 +46,7 @@ function Categories()   {
 
       {/* This will display content based on the active category */}
       <div className="category-content">
-        {activeCategory && (
-          <div>
-            <h2>{activeCategory}</h2>
-            <p>This is the content for {activeCategory}.</p>
-            {/* You can replace the paragraph with specific content for each category */}
-          </div>
-        )}
+        {renderCategoryContent()}
       </div>
     </div>
   );
