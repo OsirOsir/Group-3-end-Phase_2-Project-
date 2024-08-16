@@ -1,4 +1,57 @@
-{
+{ "clothes": [
+  {
+    "id": 1,
+    "name": "Casual T-Shirt",
+    "image": "Assets/clothes/black tshirt.jpeg",
+    "description": "A comfortable and casual t-shirt for everyday wear.",
+    "price": 1999,
+    "availableSizes": ["S", "M", "L", "XL"]
+  },
+
+  {
+    "id": 2,
+    "name": "Classic T-Shirt",
+    "image": "/Assets/clothes/blue tshirt.jpeg",
+    "description": "Stylish denim jacket with a classic fit.",
+    "price": 4999,
+    "availableSizes": ["M", "L", "XL"]
+  },
+
+  {
+    "id": 3,
+    "name": "Classic T-Shirt",
+    "image": "/Assets/clothes/red tshirt.jpeg",
+    "description": "Stylish denim jacket with a classic fit.",
+    "price": 3999,
+    "availableSizes": ["M", "L", "XL"]
+  }
+],
+"whatsNew": [
+  {
+    "id": 1,
+    "name": "Blue Jeans",
+    "image": "Assets/whatsnew/Blue jeans.jpeg",
+    "description": "Classic blue jeans with a modern fit.",
+    "price": 3999,
+    "availableSizes": ["S", "M", "L"]
+  },
+  {
+    "id": 2,
+    "name": "Sneakers",
+    "image": "/Assets/whatsnew/Fashion men sneakers.jpeg",
+    "description": "Comfortable and stylish sneakers.",
+    "price": 5999,
+    "availableSizes": ["S", "M", "L"]
+  },
+  {
+    "id": 3,
+    "name": "Hoodie",
+    "image": "/Assets/whatsnew/Grey hoodie.jpeg",
+    "description": "Soft and warm Hoodie.",
+    "price": 4500,
+    "availableSizes": ["S", "M", "L"]
+  }
+],
   "flashSale": [
     {
       "id": "1",
