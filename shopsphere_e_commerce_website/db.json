@@ -25,6 +25,7 @@
       "password": "258258"
     }
   ],
+
   "clothes": [
   {
     "id": 1,
@@ -151,6 +152,7 @@
       "productPreviousPrice": "7999"
     }
   ],
+
   "hotInCategory": [
     {
       "id": "11",

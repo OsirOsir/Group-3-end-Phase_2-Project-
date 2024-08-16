@@ -13,7 +13,7 @@ const WhatsNew = () => {
   }, []);
 
   return (
-    <div>
+    <div className="whats-new">
       <h2>What's New</h2>
       <div className="product-list">
         {newProducts.map(product => (

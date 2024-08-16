@@ -59,3 +59,10 @@
   color: #333;
   font-weight: bold;
 }
+
+.whats-new{
+  margin: 30px 375px 30px;
+  background-color: #F8F0E8;
+  padding: 30px;
+  border-radius: 10px;
+}

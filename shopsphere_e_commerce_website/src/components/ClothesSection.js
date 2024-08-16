@@ -41,7 +41,8 @@ const ClothesSection = () => {
             <div className="Clothes-details">
               <p className="description">{Clothes.description}</p>
               <p className="price">
-                {formatCurrency(Clothes.price)} <span className="original-price">{formatCurrency(Clothes.originalPrice)}</span>
+                {formatCurrency(Clothes.price)} 
+                {/* <span className="original-price">{formatCurrency(Clothes.originalPrice)}</span> */}
               </p>
               <button className="add-to-cart" onClick={() => addToCart(Clothes)}>Add to Cart</button>
             </div>
