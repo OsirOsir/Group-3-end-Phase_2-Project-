@@ -38,19 +38,19 @@ function App() {
   };
 
   useEffect(() => {
-    fetch('http://localhost:8001/products')
+    fetch('https://server-db-json.onrender.com/products')
       .then(response => response.json())
       .then(data => setProducts(data));
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:8001/flashSale")
+    fetch("https://server-db-json.onrender.com/flashSale")
     .then(response => response.json())
     .then((items) => setFlashSaleItems(items))
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:8001/hotInCategory")
+    fetch("https://server-db-json.onrender.com/hotInCategory")
     .then(response => response.json())
     .then((items) => setHotItems(items))
   }, []);

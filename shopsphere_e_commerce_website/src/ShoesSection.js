@@ -115,7 +115,7 @@ const ShoesSection = () => {
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:8001/shoes')
+    fetch('https://server-db-json.onrender.com/shoes')
       .then(response => response.json())
       .then(data => setShoesData(data))
       .catch(error => console.error('Error fetching data:', error));

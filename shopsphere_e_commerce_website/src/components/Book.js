@@ -5,7 +5,7 @@ const Book = ({ addToCart }) => {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:8001/books')
+    fetch('https://server-db-json.onrender.com/books')
       .then(response => response.json())
       .then(data => setBooks(data));
   }, []);

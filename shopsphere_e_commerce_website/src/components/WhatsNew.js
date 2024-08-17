@@ -6,7 +6,7 @@ const WhatsNew = () => {
   const [newProducts, setNewProducts] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:8001/whatsNew')
+    fetch('https://server-db-json.onrender.com/whatsNew')
       .then(response => response.json())
       .then(data => setNewProducts(data))
       .catch(error => console.error('Error fetching data:', error));

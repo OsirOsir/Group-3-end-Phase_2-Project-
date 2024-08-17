@@ -45,7 +45,7 @@ const Navbar = () => {
 
     // Fetch users from JSON server
     try {
-      const response = await fetch('http://localhost:5000/users');
+      const response = await fetch('https://server-db-json.onrender.com/users');
       const users = await response.json();
 
       const user = users.find(user => user.email === email && user.password === password);
@@ -73,7 +73,7 @@ const Navbar = () => {
 
     // Check if user already exists
     try {
-      const response = await fetch('http://localhost:5000/users');
+      const response = await fetch('https://server-db-json.onrender.com/users');
       const users = await response.json();
 
       if (users.some(user => user.email === email)) {
@@ -83,7 +83,7 @@ const Navbar = () => {
       }
 
       // Add new user
-      const postResponse = await fetch('http://localhost:5000/users', {
+      const postResponse = await fetch('https://server-db-json.onrender.com/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

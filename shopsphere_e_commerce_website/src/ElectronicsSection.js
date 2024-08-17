@@ -6,7 +6,7 @@ const ElectronicsSection = () => {
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:8001/electronics')
+    fetch('https://server-db-json.onrender.com/electronics')
       .then(response => response.json())
       .then(data => setElectronicsData(data))
       .catch(error => console.error('Error fetching data:', error));

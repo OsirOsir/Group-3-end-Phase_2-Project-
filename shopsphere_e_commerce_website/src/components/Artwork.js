@@ -5,7 +5,7 @@ const Artwork = ({ addToCart }) => {
   const [artworks, setArtworks] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:8001/artworks')
+    fetch('https://server-db-json.onrender.com/artworks')
       .then(response => response.json())
       .then(data => setArtworks(data));
   }, []);
