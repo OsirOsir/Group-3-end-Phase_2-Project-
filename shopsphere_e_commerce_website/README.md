@@ -1,13 +1,13 @@
 # GROUP 3⚙️: E-COMMERCE WEBSITE
 
 ## Project Overview
-This project is an e-commerce website designed to sell a variety of goods, including books, artwork, shoes, and electronics. The website provides a user-friendly platform where customers can browse through different product categories, search for specific items, add them to a cart, and proceed to checkout. The website also features an admin interface for managing products.
+This project is an e-commerce website designed to sell a variety of goods, including books, artwork, shoes, and electronics. The website provides a user-friendly platform where customers can browse through different product categories, search for specific items, add them to a cart, and proceed to checkout. It also features an admin interface for managing products efficiently.
 
 ## Problem Statement
-Many e-commerce websites today focus on a specific type of product, making it difficult for users to find a variety of goods under one roof. Additionally, some of these websites are not user-friendly, which can lead to a frustrating shopping experience.
+Many e-commerce websites today focus on a specific type of product, making it difficult for users to find a variety of goods under one roof. Additionally, some of these websites are not user-friendly, leading to a frustrating shopping experience.
 
 ## Solution
-Our solution is to create a well-structured and user-friendly e-commerce website that caters to users looking for a wide range of products in one place. The website allows users to easily maneuver between different categories, search for specific products, add items to a cart, and complete their purchases seamlessly.
+Our solution is to create a well-structured and user-friendly e-commerce website that caters to users looking for a wide range of products in one place. The website allows users to easily navigate between categories, search for specific products, add items to a cart, and complete their purchases seamlessly.
 
 ## MVP Features
 1. User Authentication: Users can sign up, log in, and manage their accounts securely.
@@ -26,26 +26,26 @@ Our solution is to create a well-structured and user-friendly e-commerce website
 - Figma: Design tool used for creating wireframes and prototypes.
 
 ## Installation and Setup
-1. Clone the Repository: 
-  
+1. Clone the Repository:
+   
    git clone https://github.com/OsirOsir/Group-3-end-Phase_2-Project-.git
-  
+
 2. Navigate to the Project Directory:
-  
+   
    cd shopsphere_e_commerce_website
-  
+
 3. Install Dependencies:
-  
+   
    npm install
-  
+
 4. Start the JSON Server:
-  
+   
    npm run json-server
-  
+
 5. Start the Development Server:
-  
+   
    npm start
-  
+
 6. Open your browser and navigate to `http://localhost:8001` to view the website.
 
 ## Usage
@@ -55,6 +55,10 @@ Our solution is to create a well-structured and user-friendly e-commerce website
 - Search Products: Use the search bar to find specific products.
 - Checkout: Proceed to checkout when you're ready to complete your purchase.
 
+## Deployment
+- Backend Server: [server-db-json.onrender.com](https://server-db-json.onrender.com)
+- Deployed Website: [shopspheree.netlify.app](https://shopspheree.netlify.app)
+
 ## Future Enhancements
 - Payment Gateway Integration: Add support for online payments.
 - User Reviews and Ratings: Allow users to leave reviews and rate products.
@@ -63,13 +67,22 @@ Our solution is to create a well-structured and user-friendly e-commerce website
 ## Contributing
 We welcome contributions! Please follow these steps:
 1. Fork the repository.
-2. Create a new branch: `git checkout -b feature-branch-name`.
-3. Commit your changes: `git commit -m 'Add some feature'`.
-4. Push to the branch: `git push origin feature-branch-name`.
+2. Create a new branch:
+   
+   git checkout -b feature-branch-name
+
+3. Commit your changes:
+   
+   git commit -m 'Add some feature'
+
+4. Push to the branch:
+   
+   git push origin feature-branch-name
+
 5. Open a pull request.
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## Contact
-For any inquiries, please contact us
+For any inquiries, please contact us.
