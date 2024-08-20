@@ -1,5 +1,9 @@
 # GROUP 3⚙️: E-COMMERCE WEBSITE
 
+# About Deployment
+. Backend Server: server-db-json.onrender.com
+. Deployed Website: shopspheree.netlify.app
+
 ## Project Overview
 This project is an e-commerce website designed to sell a variety of goods, including books, artwork, shoes, and electronics. The website provides a user-friendly platform where customers can browse through different product categories, search for specific items, add them to a cart, and proceed to checkout. It also features an admin interface for managing products efficiently.
 
