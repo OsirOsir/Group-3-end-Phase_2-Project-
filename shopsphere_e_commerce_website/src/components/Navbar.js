@@ -15,6 +15,9 @@ const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [signInError, setSignInError] = useState("");
   const [isHelpModalOpen, setHelpModalOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("")
+  const [items, setItems] = useState([]);
+  const [filteredItems, setFilteredItems] = useState([]);
 
   useEffect(() => {
     
@@ -36,6 +39,50 @@ const Navbar = () => {
       // Show sign-in form
       showForm('sign-in-form');
     }
+  };
+
+  useEffect(() => {
+    const fetchItems = async () => {
+      try {
+        const response = await fetch('http://localhost:8001/');
+        const data = await response.json();
+
+        // Combine items from all categories into one array
+        const allItems = [
+          ...data.clothes,
+          ...data.whatsNew,
+          ...data.flashSale,
+          ...data.hotInCategory,
+          ...data.products,
+          ...data.artworks,
+          ...data.shoes,
+          ...data.electronics,
+          ...data.books.map(item => ({
+            id: item.id,
+            name: item.productDescription,
+            image: item.productImage,
+            price: item.productPrice,
+            previousPrice: item.productPreviousPrice
+          }))
+        ];
+
+        setItems(allItems);
+      } catch (error) {
+        console.error('Error fetching items:', error);
+      }
+    };
+
+    fetchItems();
+  }, []);
+
+  const handleSearchInputChange = (event) => {
+    const query = event.target.value.toUpperCase();
+    setSearchQuery(query);
+
+    const filtered = items.filter(item => 
+      item.name.toUpperCase().includes(query)
+    )
+    setFilteredItems(filtered)
   };
 
   const handleSignIn = async (event) => {
@@ -115,7 +162,7 @@ const Navbar = () => {
         </div>
 
         <div className="shopsphere-header-middle-section">
-          <input className="search-bar" type="text" placeholder="Search" />
+          <input className="search-bar" type="text" placeholder="Search" value={searchQuery} onChange={handleSearchInputChange} />
 
           <button className="search-button">
             <img className="search-icon" src={searchIcon} alt="Search Icon" />
@@ -137,6 +184,18 @@ const Navbar = () => {
             Help
           </button>
         </div>
+      </div>
+
+      <div className="filtered-items-container">
+        {filteredItems.length > 0 ? (
+          <ul>
+            {filteredItems.map(item => (
+              <li key={item.id}>{item.name}</li>
+            ))}
+          </ul>
+        ) : (
+          <p>No items match your search.</p>
+        )}
       </div>
 
       {/* Sign In Form */}

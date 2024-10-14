@@ -81,11 +81,13 @@
   border: none;
   background-color: #ffffff;
   margin-bottom: 5px;
+  width: 170px;
 }
 
 .flash-sale-card button:hover, .hot-in-category-card button:hover{
   font-size: 17px;
   transition: 0.8s;
+  background-color: white;
 }
 
 .hot-in-category-container h2{

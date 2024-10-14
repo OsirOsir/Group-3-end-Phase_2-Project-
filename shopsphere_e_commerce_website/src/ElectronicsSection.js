@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './ElectronicSection.css';
 
-const ElectronicsSection = () => {
+const ElectronicsSection = ({ cart, onAddToCart, onRemoveFromCart }) => {
   const [electronicsData, setElectronicsData] = useState([]);
-  const [cart, setCart] = useState([]);
+  // const [cart, setCart] = useState([]);
 
   useEffect(() => {
     fetch('https://server-db-json.onrender.com/electronics')
@@ -12,14 +12,13 @@ const ElectronicsSection = () => {
       .catch(error => console.error('Error fetching data:', error));
   }, []);
 
-  const addToCart = (item) => {
-    console.log('Adding to cart:', item);
-    setCart(prevCart => [...prevCart, item]);
-  };
-
-  const removeFromCart = (itemId) => {
-    setCart(prevCart => prevCart.filter(item => item.id !== itemId));
-  };
+  const handleCartClick = (item) => {
+    if(cart.includes(item.id)){
+      onRemoveFromCart(item.id)
+    } else {
+      onAddToCart(item)
+    };
+  }
 
   return (
     <div className="electronics-section">
@@ -35,12 +34,12 @@ const ElectronicsSection = () => {
               <p className="price">
                 {item.price} <span className="original-price">{item.originalPrice}</span>
               </p>
-              <button className="add-to-cart" onClick={() => addToCart(item)}>Add to Cart</button>
+              <button className="add-to-cart" onClick={() => handleCartClick(item)}>{cart.includes(item.id) ? "Remove From Cart" : "Add To Cart"}</button>
             </div>
           </div>
         ))}
       </div>
-      <div className="cart">
+      {/* <div className="cart">
         <h3>Cart</h3>
         {cart.map(item => (
           <div key={item.id} className="cart-item">
@@ -48,7 +47,7 @@ const ElectronicsSection = () => {
             <button className="remove-from-cart" onClick={() => removeFromCart(item.id)}>Remove</button>
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };

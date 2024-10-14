@@ -26,8 +26,8 @@ function CartItem({ item, onRemoveFromCart, inCart}) {
           <img src={item.productImage} alt={item.productDescription} />
           <div className="card-description">
             <h4>{item.productDescription}</h4>
-            <p>Item price: <strong>ksh {item.productPrice}</strong></p>
-            <p>Summative item price:<strong>ksh {parseInt(item.productPrice * itemQuantity)}</strong></p>
+            <p>Item price: ksh {item.productPrice}</p>
+            <p>Summative item price: ksh {(item.productPrice * itemQuantity)}</p>
             <div className="item-quantity-cart">
                 <p>Quantity</p>
                 <button className="subtract-quantity" onClick={reduceQuantity}>-</button>

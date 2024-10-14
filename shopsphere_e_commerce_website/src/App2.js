@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import FlashSale from './components/FlashSale';
 import HotInCategory from './components/HotInCategory';
 import Cartlist from './components/CartList';
+import './App.css';
 import './components/Cart.css';
 import './components/FlashSale.css';
-import './App.css';
 import Book from './components/Book';
 import Artwork from './components/Artwork';
+import Cart from './Cart';
 import ShoesSection from './ShoesSection';
 import ElectronicsSection from './ElectronicsSection';
 import ClothesSection from './components/ClothesSection';
@@ -27,14 +28,14 @@ function App() {
   const [showWhatsNew, setShowWhatsNew] = useState(false);
   
 
-  // const addToCart = item => {
-  //   setCart([...cart, item]);
-  // };
+  const addToCart = item => {
+    setCart([...cart, item]);
+  };
   
 
-  // const removeFromCart = itemId => {
-  //   setCart(cart.filter(item => item.id !== itemId));
-  // };
+  const removeFromCart = itemId => {
+    setCart(cart.filter(item => item.id !== itemId));
+  };
 
   useEffect(() => {
     fetch('https://server-db-json.onrender.com/products')
@@ -76,15 +77,15 @@ function App() {
         <button onClick={() => { setShowClothes(true); setShowWhatsNew(false); }}>Clothes</button>
         <button onClick={() => { setShowClothes(false); setShowWhatsNew(true); }}>What's New</button>
       </nav>
-      {showClothes && <ClothesSection  cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart} />}
-      {showWhatsNew && <WhatsNew  cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart} />}
+      {showClothes && <ClothesSection />}
+      {showWhatsNew && <WhatsNew />}
       <div className="containers">
-        <Book cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart} />
-        <Artwork cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart} />
+        <Book addToCart={addToCart} />
+        <Artwork addToCart={addToCart} />
       </div>
-      <ShoesSection  cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart} />
-      <ElectronicsSection  cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart} />
-      {/* <Cart cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart} /> */}
+      <ShoesSection />
+        <ElectronicsSection />
+      <Cart cartItems={cart} removeFromCart={removeFromCart} />
       <FAQ />
       <Footer />
     </div>

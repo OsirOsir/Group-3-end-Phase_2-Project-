@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ItemCard from './ItemCard';
 
-const Book = ({ addToCart }) => {
+const Book = ({ cart, onAddToCart, onRemoveFromCart }) => {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
@@ -15,7 +15,7 @@ const Book = ({ addToCart }) => {
       <h4 className='subhead'>Books</h4>
       <div className="items-grid">
         {books.map(book => (
-          <ItemCard key={book.id} item={book} addToCart={addToCart} />
+          <ItemCard key={book.id} item={book} onAddToCart={onAddToCart} onRemoveFromCart={onRemoveFromCart} inCart={cart.includes(book)} />
         ))}
       </div>
     </div>
