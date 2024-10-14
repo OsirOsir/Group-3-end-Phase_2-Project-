@@ -1,4 +1,4 @@
-.flash-sale-container, .hot-in-category-container{
+/* .flash-sale-container, .hot-in-category-container{
   background-color: #F8F0E8;
   border-radius: 20px;
   margin: 30px 400px 50px;
@@ -16,7 +16,7 @@
   height: 390px;
   margin: 15px 10px;
   text-align: left;
-  border-radius: 10px;
+  border-radius: 10px; 
 }
 
 .flash-sale-header{
@@ -88,8 +88,153 @@
   font-size: 17px;
   transition: 0.8s;
   background-color: white;
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); 
 }
 
 .hot-in-category-container h2{
   padding-top: 30px;
+} */
+
+/* Containers */
+.flash-sale-container, 
+.hot-in-category-container {
+  background-color: #F8F0E8;
+  border-radius: 20px;
+  padding: 40px 20px; 
+  margin: 30px auto;
+  max-width: 1200px; 
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+
+}
+
+/* Items Grid */
+.flash-sale-items, 
+.hot-in-category-items {
+  display: grid; /* Change to grid layout */
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px; 
+  text-align: left;
+}
+
+
+
+/* Card Styles */
+.flash-sale-card, 
+.hot-in-category-card {
+  background-color: #ffffff;
+  padding: 20px; 
+  height: 420px; 
+  text-align: left;
+  border-radius: 15px; 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+  display: flex;
+  flex-direction: column; 
+  justify-content: space-between; 
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition for smooth hover effect */
+}
+
+/* Hover Effect for Cards */
+.flash-sale-card:hover, 
+.hot-in-category-card:hover {
+  transform: translateY(-10px); /* Move card up on hover */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+}
+
+/* Header Styles */
+.flash-sale-header {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  margin: 0 0 20px 0; /* Margin adjusted */
+}
+
+.flash-sale-header h2, 
+.hot-in-category-container h2 {
+  font-size: 25px;
+  font-weight: 700;
+  text-align: left;
+}
+
+.hot-in-category-container h2 {
+  margin-left: 0; /* Centered title */
+}
+
+/* Timer Styles */
+.timer {
+  margin-left: 5px;
+  background-color: #e8edb2;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-weight: 500;
+}
+
+/* Image Styles */
+.flash-sale-card img, 
+.hot-in-category-card img {
+  height: 220px; /* Updated height */
+  width: 100%; /* Full width */
+  border-radius: 10px; 
+  object-fit: cover; /* Ensure images cover the area */
+}
+
+/* Text and Price Styles */
+.flash-sale-card h4, 
+.hot-in-category-card h4 {
+  font-size: 15px;
+  margin-top: 15px;
+  font-weight: 700;
+}
+
+.flash-sale-prices, .hot-in-category-prices{
+  display: flex;
+  margin-top: 15px;
+  color: #C15F08;
+
+}
+
+.flash-sale-prices, .hot-in-category-prices p{
+  margin-right: 10px;
+  color: black;
+}
+
+.hot-in-category-prices span {
+  text-decoration: line-through;
+  font-size: 15px;
+}
+
+/* Button Styles */
+.flash-sale-card button, 
+.hot-in-category-card button {
+  color: #C15F08;
+  text-decoration: underline;
+  border: none;
+  background-color: #ffffff;
+  margin-bottom: 5px;
+  width: 100%; 
+}
+
+.flash-sale-card button:hover, 
+.hot-in-category-card button:hover {
+  font-size: 17px;
+  transition: 0.8s;
+  background-color: #C15F08; /* Change background color on hover */
+  color: white; 
+  transform: translateY(-5px); /* Slight lift effect */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); 
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .flash-sale-items, 
+  .hot-in-category-items {
+    grid-template-columns: repeat(3, 1fr); /* Reduce columns for smaller screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .flash-sale-items, 
+  .hot-in-category-items {
+    grid-template-columns: repeat(2, 1fr); /* Further reduce columns */
+  }
 }

@@ -131,7 +131,7 @@ const ShoesSection = ({ cart, onAddToCart, onRemoveFromCart }) => {
 
   // Function to format price
   const formatPrice = (price) => {
-    return `KSh ${price.toLocaleString()}`;
+    return `ksh ${price.toLocaleString()}`;
   };
 
   return (
@@ -146,7 +146,7 @@ const ShoesSection = ({ cart, onAddToCart, onRemoveFromCart }) => {
             <div className="shoe-details">
               <p className="description">{shoe.description}</p>
               <p className="price">
-                {formatPrice(shoe.price)} <span className="original-price">{formatPrice(shoe.originalPrice)}</span>
+                {formatPrice(shoe.price)} 
               </p>
               <button className="add-to-cart" onClick={() => handleCartClick(shoe)}>{cart.includes(shoe.id) ? "Remove From Cart" : "Add To Cart"}</button>
             </div>

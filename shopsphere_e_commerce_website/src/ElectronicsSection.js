@@ -19,6 +19,9 @@ const ElectronicsSection = ({ cart, onAddToCart, onRemoveFromCart }) => {
       onAddToCart(item)
     };
   }
+  const formatPrice = (price) => {
+    return `ksh ${price.toLocaleString()}`;
+  };
 
   return (
     <div className="electronics-section">
@@ -32,7 +35,7 @@ const ElectronicsSection = ({ cart, onAddToCart, onRemoveFromCart }) => {
             <div className="electronic-details">
               <p className="description">{item.description}</p>
               <p className="price">
-                {item.price} <span className="original-price">{item.originalPrice}</span>
+                {formatPrice(item.price)}
               </p>
               <button className="add-to-cart" onClick={() => handleCartClick(item)}>{cart.includes(item.id) ? "Remove From Cart" : "Add To Cart"}</button>
             </div>

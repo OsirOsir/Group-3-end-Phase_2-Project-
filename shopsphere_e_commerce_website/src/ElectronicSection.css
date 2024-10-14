@@ -37,6 +37,8 @@
   .electronic-details {
     margin-top: 15px;
     padding: 10px 0;
+    text-align: left;
+
   }
   
   .electronic-card .description {
@@ -44,13 +46,17 @@
     font-weight: 500;
     color: #333333;
     margin: 0 0 5px;
+    text-align: left;
+
   }
   
   .electronic-card .price {
     font-size: 18px;
     font-weight: bold;
-    color: #C15F08;
+    color: black;
     margin: 5px 0;
+    text-align: left;
+
   }
   
   .electronic-card .original-price {
@@ -63,7 +69,7 @@
   .electronic-card .add-to-cart {
     color: #C15F08;
     font-size: 16px;
-    text-decoration: none;
+    text-decoration: underline;
     background-color: transparent;
     padding: 10px 0;
     text-align: center;
