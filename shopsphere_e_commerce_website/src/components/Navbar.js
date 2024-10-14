@@ -11,7 +11,7 @@ const showForm = (formType) => {
   });
 };
 
-const Navbar = () => {
+const Navbar = ({ cart }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [signInError, setSignInError] = useState("");
   const [isHelpModalOpen, setHelpModalOpen] = useState(false);
@@ -172,7 +172,7 @@ const Navbar = () => {
         <div className="shopsphere-header-right-section">
           <a className="cart-link" href="checkout.html">
             <img className="cart-icon" src={cartIcon} alt="Cart Icon" />
-            <div className="cart-quantity">0</div>
+            <div className="cart-quantity">{cart.length}</div>
             <div className="cart-text">Cart</div>
           </a>
 

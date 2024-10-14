@@ -66,7 +66,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-      <Navbar />
+      <Navbar cart={cart} />
       </header>
       <Categories />
       <FlashSale flashSaleItems={flashSaleItems} cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart} />
