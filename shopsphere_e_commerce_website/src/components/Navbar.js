@@ -15,9 +15,8 @@ const Navbar = ({ cart }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [signInError, setSignInError] = useState("");
   const [isHelpModalOpen, setHelpModalOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("")
-  const [items, setItems] = useState([]);
-  const [filteredItems, setFilteredItems] = useState([]);
+  const [searchTerm, setSearchTerm] = useState(''); // Modify
+  const [searchResults, setSearchResults] = useState([]); // Modify
 
   useEffect(() => {
     
@@ -41,49 +40,26 @@ const Navbar = ({ cart }) => {
     }
   };
 
-  useEffect(() => {
-    const fetchItems = async () => {
-      try {
-        const response = await fetch('http://localhost:8001/');
-        const data = await response.json();
-
-        // Combine items from all categories into one array
-        const allItems = [
-          ...data.clothes,
-          ...data.whatsNew,
-          ...data.flashSale,
-          ...data.hotInCategory,
-          ...data.products,
-          ...data.artworks,
-          ...data.shoes,
-          ...data.electronics,
-          ...data.books.map(item => ({
-            id: item.id,
-            name: item.productDescription,
-            image: item.productImage,
-            price: item.productPrice,
-            previousPrice: item.productPreviousPrice
-          }))
-        ];
-
-        setItems(allItems);
-      } catch (error) {
-        console.error('Error fetching items:', error);
-      }
-    };
-
-    fetchItems();
-  }, []);
-
-  const handleSearchInputChange = (event) => {
-    const query = event.target.value.toUpperCase();
-    setSearchQuery(query);
-
-    const filtered = items.filter(item => 
-      item.name.toUpperCase().includes(query)
-    )
-    setFilteredItems(filtered)
+  // Modify
+  const handleSearchInputChange = (e) => {
+    setSearchTerm(e.target.value);
   };
+
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    if (searchTerm.trim() === "") {
+      return;
+    }
+
+    try {
+        const response = await fetch(`/api/search_items?q=${searchTerm}`);
+        const results = await response.json();
+        setSearchResults(results);
+    } catch (error) {
+        console.error("Error fetching search results:", error);
+    }
+};
+
 
   const handleSignIn = async (event) => {
     event.preventDefault();
@@ -161,12 +137,15 @@ const Navbar = ({ cart }) => {
           <h2>SHOPSPHERE</h2>
         </div>
 
-        <div className="shopsphere-header-middle-section">
-          <input className="search-bar" type="text" placeholder="Search" value={searchQuery} onChange={handleSearchInputChange} />
+        <div className="shopsphere-header-middle-section"> {/* Modify */}
+          <form onSubmit={handleSearch}>
+            <input className="search-bar" type="text" placeholder="Search" value={searchTerm} onChange={handleSearchInputChange} />
 
-          <button className="search-button">
-            <img className="search-icon" src={searchIcon} alt="Search Icon" />
-          </button>
+            <button className="search-button" type="submit">
+              <img className="search-icon" src={searchIcon} alt="Search Icon" />
+            </button>
+          </form>
+          
         </div>
 
         <div className="shopsphere-header-right-section">
@@ -186,17 +165,18 @@ const Navbar = ({ cart }) => {
         </div>
       </div>
 
-      <div className="filtered-items-container">
-        {filteredItems.length > 0 ? (
-          <ul>
-            {filteredItems.map(item => (
-              <li key={item.id}>{item.name}</li>
-            ))}
-          </ul>
+      {/* Display search results */}
+      <div className="search-results">
+        {searchResults.length > 0 ? (
+            <ul>
+                {searchResults.map(item => (
+                    <li key={item.id}>{item.item_name}</li>
+                ))}
+            </ul>
         ) : (
-          <p>No items match your search.</p>
+            <p>No items match your search.</p>
         )}
-      </div>
+        </div>
 
       {/* Sign In Form */}
       <div className="form-container sign-in-form" style={{ display: 'none' }}>

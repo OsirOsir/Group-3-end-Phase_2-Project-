@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './ElectronicSection.css';
 
-const ElectronicsSection = ({ cart, onAddToCart, onRemoveFromCart }) => {
+// Modify
+const ElectronicsSection = ({ cart=[], onAddToCart, onRemoveFromCart }) => {
   const [electronicsData, setElectronicsData] = useState([]);
   // const [cart, setCart] = useState([]);
 
+  // Modify
   useEffect(() => {
-    fetch('https://server-db-json.onrender.com/electronics')
+    fetch('/api/electronics')
       .then(response => response.json())
       .then(data => setElectronicsData(data))
       .catch(error => console.error('Error fetching data:', error));
@@ -20,6 +22,7 @@ const ElectronicsSection = ({ cart, onAddToCart, onRemoveFromCart }) => {
     };
   }
 
+  // Modify
   return (
     <div className="electronics-section">
       <h2>Electronics</h2>
@@ -27,12 +30,12 @@ const ElectronicsSection = ({ cart, onAddToCart, onRemoveFromCart }) => {
         {electronicsData.map(item => (
           <div key={item.id} className="electronic-card">
             <div className="image-placeholder">
-              <img src={item.image} alt={item.description} />
+              <img src={item.image_url} alt={item.item_name} />
             </div>
             <div className="electronic-details">
-              <p className="description">{item.description}</p>
+              <p className="description">{item.item_name}</p>
               <p className="price">
-                {item.price} <span className="original-price">{item.originalPrice}</span>
+               ksh {item.offer_price} <span className="original-price">{item.price}</span>
               </p>
               <button className="add-to-cart" onClick={() => handleCartClick(item)}>{cart.includes(item.id) ? "Remove From Cart" : "Add To Cart"}</button>
             </div>

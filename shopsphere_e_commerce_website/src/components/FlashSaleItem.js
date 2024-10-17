@@ -9,14 +9,15 @@ function FlashSaleItem({ item, onAddToCart, onRemoveFromCart, inCart }) {
       onAddToCart(item)
     };
   }
-    
+  
+  // Modify
   return (
     <div className="flash-sale-card">
-      <img src={item.productImage} alt={item.productDescription} />
-      <h4>{item.productDescription}</h4>
+      <img src={item.image_url} alt={item.item_name} />
+      <h4>{item.item_name}</h4>
       <div className='flash-sale-prices'>
-        <p>ksh {item.productPrice}</p>
-        <p><span>ksh {item.productPreviousPrice}</span></p>
+        <p>ksh {item.offer_price}</p>
+        <p><span>ksh {item.price}</span></p>
       </div>
       
       <button onClick={handleCartClick}>{inCart ? "Remove From Cart" : "Add To Cart"}</button>
