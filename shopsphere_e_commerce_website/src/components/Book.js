@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import ItemCard from './ItemCard';
 
-const Book = ({ cart, onAddToCart, onRemoveFromCart }) => {
+const Book = ({ cart=[], onAddToCart, onRemoveFromCart }) => {
   const [books, setBooks] = useState([]);
 
+  // Modify
   useEffect(() => {
-    fetch('https://server-db-json.onrender.com/books')
+    fetch('/api/books')
       .then(response => response.json())
       .then(data => setBooks(data));
   }, []);
 
+  // Modify
   return (
     <div className="book-container">
       <h4 className='subhead'>Books</h4>

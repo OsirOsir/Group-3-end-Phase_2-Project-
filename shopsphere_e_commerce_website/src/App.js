@@ -42,14 +42,16 @@ function App() {
       .then(data => setProducts(data));
   }, []);
 
+  // Modify
   useEffect(() => {
-    fetch("https://server-db-json.onrender.com/flashSale")
+    fetch("/api/flashsale")
     .then(response => response.json())
     .then((items) => setFlashSaleItems(items))
   }, []);
 
+  // Modify
   useEffect(() => {
-    fetch("https://server-db-json.onrender.com/hotInCategory")
+    fetch("/api/hot_in_category")
     .then(response => response.json())
     .then((items) => setHotItems(items))
   }, []);

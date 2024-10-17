@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './ClothesSection.css';
 
-const ClothesSection = ({ cart, onAddToCart, onRemoveFromCart }) => {
+const ClothesSection = ({ cart=[], onAddToCart, onRemoveFromCart }) => {
   const [ClothesData, setClothesData] = useState([]);
 
+  // Modify
   useEffect(() => {
-    fetch('https://server-db-json.onrender.com/clothes')
+    fetch('/api/clothes')
       .then(response => response.json())
       .then(data => setClothesData(data))
       .catch(error => console.error('Error fetching data:', error));
@@ -27,6 +28,7 @@ const ClothesSection = ({ cart, onAddToCart, onRemoveFromCart }) => {
     return formatter.format(amount);
   };
 
+  // Modify
   return (
     <div className="Clothes-section">
       <h2>Clothes</h2>
@@ -34,9 +36,10 @@ const ClothesSection = ({ cart, onAddToCart, onRemoveFromCart }) => {
         {ClothesData.map((Clothes) => (
           <div key={Clothes.id} className="Clothes-card">
             <div className="image-placeholder">
-              <img src={Clothes.image} alt={Clothes.description} />
+              <img src={Clothes.image_url} alt={Clothes.item_name} />
             </div>
             <div className="Clothes-details">
+              <p className="description">{Clothes.item_name}</p>
               <p className="description">{Clothes.description}</p>
               <p className="price">
                 {formatCurrency(Clothes.price)} 

@@ -73,9 +73,9 @@
 
 .search-bar {
   flex: 1;
-  width: 0;
+  width: 750px;
   font-size: 16px;
-  margin-top: .6rem;
+  padding-top: 5px;
   height: 40px;
   padding-left: 20px;
   border: none;
@@ -98,6 +98,10 @@
   height: 22px;
   margin-top: -7px;
 }
+
+/* .search-results{
+
+} */
 
 .shopsphere-header-right-section {
   width: 300px; /* Increased width to accommodate new buttons */

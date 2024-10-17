@@ -10,11 +10,12 @@ function HotInCategoryItem({ item, onAddToCart, onRemoveFromCart, inCart }) {
     };
   }
   
+  // Modify
   return (
     <div className="hot-in-category-card">
-      <img src={item.productImage} alt={item.productDescription} />
-      <h4>{item.productDescription}</h4>
-      <p>ksh {item.productPrice}</p>
+      <img src={item.image_url} alt={item.item_name} />
+      <h4>{item.item_name}</h4>
+      <p>ksh {item.price}</p>
       <button onClick={handleCartClick}>{inCart ? "Remove From Cart" : "Add To Cart"}</button>
 
     </div>
