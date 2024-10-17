@@ -10,12 +10,13 @@ const ItemCard = ({ item, onAddToCart, onRemoveFromCart, inCart }) => {
     };
   }
 
+  // Modify
   return (
     <div className="item-card">
-      <img src={item.image} alt={item.title} />
-      <h4>{item.title}</h4>
-      <p>{item.author || item.artist}</p>
-      <p>ksh. {item.price}</p>
+      <img src={item.image_url} alt={item.item_name} />
+      <h4>{item.item_name}</h4>
+      <p>{item.description}</p>
+      <p>ksh {item.price}</p>
       <button onClick={handleCartClick}>{inCart ? "Remove From Cart" : "Add To Cart"}</button>
     </div>
   );

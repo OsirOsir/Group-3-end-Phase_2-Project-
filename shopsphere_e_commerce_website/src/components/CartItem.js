@@ -20,14 +20,15 @@ function CartItem({ item, onRemoveFromCart, inCart}) {
         }
     };
 
+  // Modify
   return (
     <div className="in-cart-card">
         <div className="card-details">
-          <img src={item.productImage} alt={item.productDescription} />
+          <img src={item.image_url} alt={item.item_name} />
           <div className="card-description">
-            <h4>{item.productDescription}</h4>
-            <p>Item price: ksh {item.productPrice}</p>
-            <p>Summative item price: ksh {(item.productPrice * itemQuantity)}</p>
+            <h4>{item.item_name}</h4>
+            <p>Item price: ksh {item.price}</p>
+            <p>Summative item price: ksh {(item.price * itemQuantity)}</p>
             <div className="item-quantity-cart">
                 <p>Quantity</p>
                 <button className="subtract-quantity" onClick={reduceQuantity}>-</button>
