@@ -38,7 +38,6 @@ const ShoesSection = ({ cart=[], onAddToCart, onRemoveFromCart }) => {
               <p className="price">ksh {shoe.offer_price}</p>
               <p><span className="original-price">ksh {shoe.price}</span></p>
                  
-              
               <button className="add-to-cart" onClick={() => handleCartClick(shoe)}>{cart.includes(shoe.id) ? "Remove From Cart" : "Add To Cart"}</button>
             </div>
           </div>
