@@ -31,7 +31,7 @@ const ShoesSection = ({ cart=[], onAddToCart, onRemoveFromCart }) => {
         {shoesData.map((shoe) => (
           <div key={shoe.id} className="shoe-card">
             <div className="image-placeholder">
-              <img src={shoe.image_url} alt={shoe.itema_name} />
+              <img src={shoe.image_url} alt={shoe.item_name} />
             </div>
             <div className="shoe-details">
               <p className="description">{shoe.item_name}</p>
