@@ -179,7 +179,8 @@ const Navbar = ({ cart }) => {
 
         <div className="shopsphere-header-middle-section">
           <form onSubmit={handleSearch}>
-            <input className="search-bar" type="text" placeholder="Search" value={searchTerm} onChange={handleSearchInputChange} style={{ width: '150px' }} />
+            <input className="search-bar" type="text" placeholder="Search" value={searchTerm} onChange={handleSearchInputChange} />
+            {/* <input className="search-bar" type="text" placeholder="Search" value={searchTerm} onChange={handleSearchInputChange} style={{ width: '150px' }} /> */}
             <button className="search-button" type="submit">
               <img className="search-icon" src={searchIcon} alt="Search Icon" />
             </button>
