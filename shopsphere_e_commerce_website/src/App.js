@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'; 
 import FlashSale from './components/FlashSale';
 import HotInCategory from './components/HotInCategory';
 import Cartlist from './components/CartList';
@@ -11,7 +12,7 @@ import ShoesSection from './ShoesSection';
 import ElectronicsSection from './ElectronicsSection';
 import ClothesSection from './components/ClothesSection';
 import WhatsNew from './components/WhatsNew';
-
+import Payment from './Payment';
 import Navbar from './components/Navbar'
 import Categories from './components/Categories';
 import Footer from './components/Footer'
@@ -25,6 +26,7 @@ function App() {
   const [products, setProducts] = useState([]);  // Add setProducts here
   const [showClothes, setShowClothes] = useState(true);
   const [showWhatsNew, setShowWhatsNew] = useState(false);
+  const [isPaymentVisible, setIsPaymentVisible] = useState(false);
   
 
   // const addToCart = item => {
@@ -71,6 +73,7 @@ function App() {
       <Navbar cart={cart} />
       </header>
       <Categories />
+
       <FlashSale flashSaleItems={flashSaleItems} cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart} />
       <HotInCategory hotItems={hotItems} cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart}/>
       <Cartlist cart={cart} onRemoveFromCart={handleRemoveFromCart}/>
@@ -89,6 +92,11 @@ function App() {
       {/* <Cart cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart} /> */}
       <FAQ />
       <Footer />
+      {/* Button to show the Payment component */}
+      <button onClick={() => setIsPaymentVisible(true)}>Proceed to Payment</button>
+
+      {/* Conditionally render Payment component */}
+      {isPaymentVisible && <Payment />}
     </div>
   );
 }
