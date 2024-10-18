@@ -19,6 +19,7 @@ function FlashSaleItem({ item, onAddToCart, onRemoveFromCart, inCart }) {
         <p>ksh {item.offer_price}</p>
         <p><span>ksh {item.price}</span></p>
       </div>
+      <div className='items_available'><p>Items available: {item.items_available}</p></div>
       
       <button onClick={handleCartClick}>{inCart ? "Remove From Cart" : "Add To Cart"}</button>
 

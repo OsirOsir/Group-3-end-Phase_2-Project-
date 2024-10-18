@@ -9,7 +9,7 @@ const ProductList = ({ onAddToCart }) => { // Accept onAddToCart as a prop
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:5555/items'); // Adjust the URL as needed
+                const response = await fetch('/items'); // Adjust the URL as needed
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
@@ -38,7 +38,7 @@ const ProductList = ({ onAddToCart }) => { // Accept onAddToCart as a prop
                             <img src={item.image_url} alt={item.item_name} className="product-image" />
                             <h3>{item.item_name}</h3>
                             <p>{item.description || 'No description available.'}</p>
-                            <p>Price: ₹{item.price}</p>
+                            <p>Price: ksh {item.price}</p>
                             <p>Available: {item.items_available}</p>
                             <button onClick={() => onAddToCart(item)}>Add to Cart</button> {/* Add item to cart */}
                         </div>

@@ -38,6 +38,7 @@ const ElectronicsSection = ({ cart=[], onAddToCart, onRemoveFromCart }) => {
             <div className="electronic-details">
               <p className="description">{item.item_name}</p>
               <p className="price">ksh {item.price}</p>
+              <div className='items_available'><p>Items available: {item.items_available}</p></div>
 
               <button className="add-to-cart" onClick={() => handleCartClick(item)}>{cart.includes(item.id) ? "Remove From Cart" : "Add To Cart"}</button>
             </div>

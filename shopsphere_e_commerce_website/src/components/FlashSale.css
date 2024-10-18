@@ -166,6 +166,11 @@
   margin-left: 0; /* Centered title */
 }
 
+.hot-in-category-card p{
+  margin-top: -5px;
+  text-align: left;
+}
+
 /* Timer Styles */
 .timer {
   margin-left: 5px;
@@ -194,13 +199,13 @@
 
 .flash-sale-prices, .hot-in-category-prices{
   display: flex;
-  margin-top: 15px;
+  margin-top: 5px;
   color: #C15F08;
 
 }
 
-.flash-sale-prices, .hot-in-category-prices p{
-  margin-right: 10px;
+.flash-sale-prices p, .hot-in-category-prices p{
+  margin: 5px 10px 5px 0px;
   color: black;
 }
 
@@ -211,6 +216,13 @@
   margin-left: 20px;
 }
 
+.items_available p{
+  margin-top: -5px;
+  font-size: 13px;
+  text-align: left;
+  align-items: end;
+}
+
 /* Button Styles */
 .flash-sale-card button, 
 .hot-in-category-card button {
@@ -218,7 +230,7 @@
   text-decoration: underline;
   border: none;
   background-color: #ffffff;
-  margin-bottom: 5px;
+  margin: 5px 0px;
   width: 100%; 
 }
 

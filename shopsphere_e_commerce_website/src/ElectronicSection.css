@@ -59,6 +59,13 @@
 
   }
   
+  .items_available p{
+    margin-top: -5px;
+    font-size: 13px;
+    text-align: left;
+    align-items: end;
+  }
+  
   .electronic-card .original-price {
     color: #888;
     font-size: 14px;

@@ -40,11 +40,12 @@ const ClothesSection = ({ cart=[], onAddToCart, onRemoveFromCart }) => {
             </div>
             <div className="Clothes-details">
               <p className="description">{Clothes.item_name}</p>
-              <p className="description">{Clothes.description}</p>
+              {/* <p className="description">{Clothes.description}</p> */}
               <p className="price">
                 {formatCurrency(Clothes.price)} 
                 {/* <span className="original-price">{formatCurrency(Clothes.originalPrice)}</span> */}
               </p>
+              <div className='items_available'><p>Items available: {Clothes.items_available}</p></div>
               <button className="add-to-cart" onClick={() => handleCartClick(Clothes)}>{cart.includes(Clothes.id) ? "Remove From Cart" : "Add To Cart"}</button>
             </div>
           </div>

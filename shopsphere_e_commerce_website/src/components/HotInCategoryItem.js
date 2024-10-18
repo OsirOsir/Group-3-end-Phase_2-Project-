@@ -16,6 +16,7 @@ function HotInCategoryItem({ item, onAddToCart, onRemoveFromCart, inCart }) {
       <img src={item.image_url} alt={item.item_name} />
       <h4>{item.item_name}</h4>
       <p>ksh {item.price}</p>
+      <div className='items_available'><p>Items available: {item.items_available}</p></div>
       <button onClick={handleCartClick}>{inCart ? "Remove From Cart" : "Add To Cart"}</button>
 
     </div>

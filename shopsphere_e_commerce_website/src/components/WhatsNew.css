@@ -60,6 +60,14 @@
   font-weight: bold;
 }
 
+.items_available p{
+  margin-top: -5px;
+  font-size: 13px;
+  text-align: left;
+  align-items: end;
+  font-weight: 400;
+}
+
 .whats-new{
   margin: 30px 375px 30px;
   background-color: #F8F0E8;

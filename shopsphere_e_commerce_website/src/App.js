@@ -17,6 +17,10 @@ import Navbar from './components/Navbar';
 import Categories from './components/Categories';
 import Footer from './components/Footer';
 import FAQ from './components/FAQ';
+import CreateItem from './components/CreateItemForm';
+import UpdateItemForm from "./components/UpdateItemForm";
+import DeleteItem from './components/DeleteItem';
+import ItemList from "./components/ItemList";
 
 function App() {
   const [flashSaleItems, setFlashSaleItems] = useState([]);
@@ -25,6 +29,7 @@ function App() {
   const [products, setProducts] = useState([]); 
   const [showClothes, setShowClothes] = useState(true);
   const [showWhatsNew, setShowWhatsNew] = useState(false);
+  const [items, setItems] = useState([]);
 
   useEffect(() => {
     fetch('https://server-db-json.onrender.com/products')
@@ -54,6 +59,20 @@ function App() {
     setCart(cart.filter((cartItem) => cartItem.id !== item.id));
   };
 
+  const addItemToList = (newItem) => {
+    setItems([...items, newItem]);
+  };
+
+  const updateItemInList = (updatedItem) => {
+    setItems(
+      items.map((item) => (item.id === updatedItem.id ? updatedItem : item))
+    );
+  };
+
+  const deleteItemFromList = (itemId) => {
+    setItems(items.filter((item) => item.id !== itemId));
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -71,8 +90,15 @@ function App() {
       </div>
       <ShoesSection cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart} />
       <ElectronicsSection cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart} />
+      <CreateItem addItemToList={addItemToList} />
+      <UpdateItemForm updateItemInList={updateItemInList} />
+      <ItemList
+        items={items}
+        deleteItemFromList={deleteItemFromList}
+        setItems={setItems}
+      />
       {/* Add the ProductList component here */}
-      <ProductList products={products} onAddToCart={handleAddToCart} />
+      {/* <ProductList products={products} onAddToCart={handleAddToCart} /> */}
       <FAQ />
       <Footer />
     </div>
