@@ -74,12 +74,8 @@ function App() {
       <FlashSale flashSaleItems={flashSaleItems} cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart} />
       <HotInCategory hotItems={hotItems} cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart}/>
       <Cartlist cart={cart} onRemoveFromCart={handleRemoveFromCart}/>
-      <nav>
-        <button onClick={() => { setShowClothes(true); setShowWhatsNew(false); }}>Clothes</button>
-        <button onClick={() => { setShowClothes(false); setShowWhatsNew(true); }}>What's New</button>
-      </nav>
-      {showClothes && <ClothesSection  cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart} />}
-      {showWhatsNew && <WhatsNew  cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart} />}
+      <ClothesSection  cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart} />
+      <WhatsNew  cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart} />
       <div className="containers">
         <Book cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart} />
         <Artwork cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart} />
