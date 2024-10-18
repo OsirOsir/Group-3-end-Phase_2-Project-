@@ -27,6 +27,7 @@ function App() {
   const [showClothes, setShowClothes] = useState(true);
   const [showWhatsNew, setShowWhatsNew] = useState(false);
   const [isPaymentVisible, setIsPaymentVisible] = useState(false);
+  const [totalAmount, setTotalAmount] = useState(0); 
   
 
   // const addToCart = item => {
@@ -67,6 +68,12 @@ function App() {
       setCart(cart.filter((cartItem) => cartItem.id !== item.id))
     };
 
+    const handleCheckout = () => {
+      const total = cart.reduce((acc, item) => acc + item.price, 0);
+      setTotalAmount(total); // Set the total amount for the payment
+      setIsPaymentVisible(true); // Show the Payment component
+    };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -93,10 +100,9 @@ function App() {
       <FAQ />
       <Footer />
       {/* Button to show the Payment component */}
-      <button onClick={() => setIsPaymentVisible(true)}>Proceed to Payment</button>
-
-      {/* Conditionally render Payment component */}
-      {isPaymentVisible && <Payment />}
+      <Cartlist cart={cart} onRemoveFromCart={handleRemoveFromCart} onCheckout={handleCheckout} />
+      {/* Button to show the Payment component */}
+      {isPaymentVisible && <Payment cartItems={cart} total={totalAmount} />}
     </div>
   );
 }

@@ -29,7 +29,7 @@ const Cart = ({ cartItems, removeFromCart }) => {
               ))}
             </div>
             <h3 className="cart-total">Total: Ksh {total.toFixed(2)}</h3>
-            <button className="checkout-btn" onClick={handleCheckout}>Checkout</button>
+            <button className="checkout-btn" onClick={onCheckout}>Checkout</button>
           </div>
         )}
       </div>

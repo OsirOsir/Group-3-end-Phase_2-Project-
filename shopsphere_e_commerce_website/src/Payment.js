@@ -1,10 +1,6 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
 
-const Payment = () => {
-  const location = useLocation();
-  const { cartItems, total } = location.state || { cartItems: [], total: 0 };
-
+const Payment = ({ cartItems, total }) => {
   const handlePayment = (e) => {
     e.preventDefault();
     alert('Payment successful!'); // Simulate payment processing
