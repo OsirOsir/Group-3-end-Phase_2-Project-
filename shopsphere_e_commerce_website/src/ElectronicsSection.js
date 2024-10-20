@@ -15,12 +15,13 @@ const ElectronicsSection = ({ cart=[], onAddToCart, onRemoveFromCart }) => {
   }, []);
 
   const handleCartClick = (item) => {
-    if(cart.includes(item.id)){
-      onRemoveFromCart(item.id)
+    const itemInCart = cart.find(cartItem => cartItem.id === item.id);
+    if (itemInCart) {
+      onRemoveFromCart(itemInCart); // Pass the entire item object
     } else {
-      onAddToCart(item)
-    };
-  }
+      onAddToCart(item);
+    }
+  };
   const formatPrice = (price) => {
     return `ksh ${price.toLocaleString()}`;
   };

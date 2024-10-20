@@ -98,7 +98,7 @@ function App() {
         setItems={setItems}
       /> */}
       {/* Add the ProductList component here */}
-      {/* <ProductList products={products} onAddToCart={handleAddToCart} /> */}
+      <ProductList products={products} onAddToCart={handleAddToCart} />
       <FAQ />
       <Footer />
     </div>
