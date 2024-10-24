@@ -1,4 +1,3 @@
-// src/App.js
 import React, { useState, useEffect } from 'react';
 import FlashSale from './components/FlashSale';
 import HotInCategory from './components/HotInCategory';
@@ -17,32 +16,28 @@ import Navbar from './components/Navbar';
 import Categories from './components/Categories';
 import Footer from './components/Footer';
 import FAQ from './components/FAQ';
-// import CreateItem from './components/CreateItemForm';
-// import UpdateItemForm from "./components/UpdateItemForm";
-// import DeleteItem from './components/DeleteItem';
-// import ItemList from "./components/ItemList";
 
 function App() {
   const [flashSaleItems, setFlashSaleItems] = useState([]);
   const [hotItems, setHotItems] = useState([]);
   const [cart, setCart] = useState([]);
   const [products, setProducts] = useState([]); 
-  const [showClothes, setShowClothes] = useState(true);
-  const [showWhatsNew, setShowWhatsNew] = useState(false);
-  const [items, setItems] = useState([]);
 
+  // Fetch products from remote JSON server
   useEffect(() => {
     fetch('https://server-db-json.onrender.com/products')
       .then(response => response.json())
       .then(data => setProducts(data));
   }, []);
 
+  // Fetch flash sale items
   useEffect(() => {
     fetch("/api/flashsale")
       .then(response => response.json())
       .then((items) => setFlashSaleItems(items));
   }, []);
 
+  // Fetch hot items in categories
   useEffect(() => {
     fetch("/api/hot_in_category")
       .then(response => response.json())
@@ -59,46 +54,29 @@ function App() {
     setCart(cart.filter((cartItem) => cartItem.id !== item.id));
   };
 
-  // const addItemToList = (newItem) => {
-  //   setItems([...items, newItem]);
-  // };
-
-  // const updateItemInList = (updatedItem) => {
-  //   setItems(
-  //     items.map((item) => (item.id === updatedItem.id ? updatedItem : item))
-  //   );
-  // };
-
-  // const deleteItemFromList = (itemId) => {
-  //   setItems(items.filter((item) => item.id !== itemId));
-  // };
-
   return (
     <div className="App">
       <header className="App-header">
         <Navbar cart={cart} />
       </header>
       <Categories />
+      
       <FlashSale flashSaleItems={flashSaleItems} cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart} />
-      <HotInCategory hotItems={hotItems} cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart}/>
-      <Cartlist cart={cart} onRemoveFromCart={handleRemoveFromCart}/>
-      <ClothesSection  cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart} />
-      <WhatsNew  cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart} />
+      <HotInCategory hotItems={hotItems} cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart} />
+      <Cartlist cart={cart} onRemoveFromCart={handleRemoveFromCart} />
+      <ClothesSection cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart} />
+      <WhatsNew cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart} />
+
       <div className="containers">
         <Book cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart} />
         <Artwork cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart} />
       </div>
+
       <ShoesSection cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart} />
       <ElectronicsSection cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart} />
-      {/* <CreateItem addItemToList={addItemToList} />
-      <UpdateItemForm updateItemInList={updateItemInList} />
-      <ItemList
-        items={items}
-        deleteItemFromList={deleteItemFromList}
-        setItems={setItems}
-      /> */}
-      {/* Add the ProductList component here */}
+      
       <ProductList products={products} onAddToCart={handleAddToCart} />
+      
       <FAQ />
       <Footer />
     </div>

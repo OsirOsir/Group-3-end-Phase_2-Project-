@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './ElectronicSection.css';
 
-// Modify
-const ElectronicsSection = ({ cart=[], onAddToCart, onRemoveFromCart }) => {
+const ElectronicsSection = ({ cart = [], onAddToCart, onRemoveFromCart }) => {
   const [electronicsData, setElectronicsData] = useState([]);
-  // const [cart, setCart] = useState([]);
 
-  // Modify
   useEffect(() => {
     fetch('/api/electronics')
       .then(response => response.json())
@@ -17,16 +14,16 @@ const ElectronicsSection = ({ cart=[], onAddToCart, onRemoveFromCart }) => {
   const handleCartClick = (item) => {
     const itemInCart = cart.find(cartItem => cartItem.id === item.id);
     if (itemInCart) {
-      onRemoveFromCart(itemInCart); // Pass the entire item object
+      onRemoveFromCart(itemInCart);
     } else {
       onAddToCart(item);
     }
   };
+
   const formatPrice = (price) => {
     return `ksh ${price.toLocaleString()}`;
   };
 
-  // Modify
   return (
     <div className="electronics-section">
       <h2>Electronics</h2>
@@ -38,27 +35,18 @@ const ElectronicsSection = ({ cart=[], onAddToCart, onRemoveFromCart }) => {
             </div>
             <div className="electronic-details">
               <p className="description">{item.item_name}</p>
-              <p className="price">ksh {item.price}</p>
+              <p className="price">{formatPrice(item.price)}</p>
               <div className='items_available'><p>Items available: {item.items_available}</p></div>
 
-              <button className="add-to-cart" onClick={() => handleCartClick(item)}>{cart.includes(item.id) ? "Remove From Cart" : "Add To Cart"}</button>
+              <button className="add-to-cart" onClick={() => handleCartClick(item)}>
+                {cart.includes(item.id) ? "Remove From Cart" : "Add To Cart"}
+              </button>
             </div>
           </div>
         ))}
       </div>
-      {/* <div className="cart">
-        <h3>Cart</h3>
-        {cart.map(item => (
-          <div key={item.id} className="cart-item">
-            <span>{item.description} - {item.price}</span>
-            <button className="remove-from-cart" onClick={() => removeFromCart(item.id)}>Remove</button>
-          </div>
-        ))}
-      </div> */}
     </div>
   );
 };
 
 export default ElectronicsSection;
-
-
