@@ -1,7 +1,6 @@
 # GROUP 3⚙️: E-COMMERCE WEBSITE
 
 # About Deployment
-. Backend Server: server-db-json.onrender.com
 
 . Deployed Website: shopspheree.netlify.app
 
