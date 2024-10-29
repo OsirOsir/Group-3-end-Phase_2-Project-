@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'; 
 import FlashSale from './components/FlashSale';
 import HotInCategory from './components/HotInCategory';
 import Cartlist from './components/CartList';
@@ -12,12 +13,34 @@ import ShoesSection from './ShoesSection';
 import ElectronicsSection from './ElectronicsSection';
 import ClothesSection from './components/ClothesSection';
 import WhatsNew from './components/WhatsNew';
+import Payment from './Payment';
+import Navbar from './components/Navbar'
 import Navbar from './components/Navbar';
 import Categories from './components/Categories';
 import Footer from './components/Footer';
 import FAQ from './components/FAQ';
 
 function App() {
+
+  const [ flashSaleItems, setFlashSaleItems ] = useState([]);
+  const [ hotItems, setHotItems ] = useState([]);
+  const [ cart, setCart ] = useState([]);
+  const [products, setProducts] = useState([]);  // Add setProducts here
+  const [showClothes, setShowClothes] = useState(true);
+  const [showWhatsNew, setShowWhatsNew] = useState(false);
+  const [isPaymentVisible, setIsPaymentVisible] = useState(false);
+  const [totalAmount, setTotalAmount] = useState(0); 
+  
+
+  // const addToCart = item => {
+  //   setCart([...cart, item]);
+  // };
+  
+
+  // const removeFromCart = itemId => {
+  //   setCart(cart.filter(item => item.id !== itemId));
+  // };
+
   const [flashSaleItems, setFlashSaleItems] = useState([]);
   const [hotItems, setHotItems] = useState([]);
   const [cart, setCart] = useState([]);
@@ -54,12 +77,19 @@ function App() {
     setCart(cart.filter((cartItem) => cartItem.id !== item.id));
   };
 
+    const handleCheckout = () => {
+      const total = cart.reduce((acc, item) => acc + item.price, 0);
+      setTotalAmount(total); // Set the total amount for the payment
+      setIsPaymentVisible(true); // Show the Payment component
+    };
+
   return (
     <div className="App">
       <header className="App-header">
         <Navbar cart={cart} />
       </header>
       <Categories />
+
       
       <FlashSale flashSaleItems={flashSaleItems} cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart} />
       <HotInCategory hotItems={hotItems} cart={cart} onAddToCart={handleAddToCart} onRemoveFromCart={handleRemoveFromCart} />
@@ -79,6 +109,10 @@ function App() {
       
       <FAQ />
       <Footer />
+      {/* Button to show the Payment component */}
+      <Cartlist cart={cart} onRemoveFromCart={handleRemoveFromCart} onCheckout={handleCheckout} />
+      {/* Button to show the Payment component */}
+      {isPaymentVisible && <Payment cartItems={cart} total={totalAmount} />}
     </div>
   );
 }

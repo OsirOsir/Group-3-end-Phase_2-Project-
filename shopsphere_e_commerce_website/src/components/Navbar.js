@@ -16,7 +16,9 @@ const Navbar = ({ cart }) => {
   const [showSignUpForm, setShowSignUpForm] = useState(false);
 
   useEffect(() => {
+
     const checkAuthStatus = () => {
+      const user = localStorage.getItem('user');
       const user = localStorage.getItem('user');
       setIsLoggedIn(!!user);
       if (user) {
@@ -42,6 +44,8 @@ const Navbar = ({ cart }) => {
 
   const handleAuthButtonClick = () => {
     if (isLoggedIn) {
+      // Handle logout
+      localStorage.removeItem('user');
       localStorage.removeItem('user');
       setIsLoggedIn(false);
       setUserProfile(null);
@@ -64,9 +68,15 @@ const Navbar = ({ cart }) => {
       const response = await fetch(`/api/search_items?q=${searchTerm}`);
       const results = await response.json();
       setSearchResults(results);
+      const response = await fetch(`/api/search_items?q=${searchTerm}`);
+      const results = await response.json();
+      setSearchResults(results);
     } catch (error) {
       console.error("Error fetching search results:", error);
+      console.error("Error fetching search results:", error);
     }
+  };
+
   };
 
   const handleSignIn = async (event) => {
@@ -83,12 +93,16 @@ const Navbar = ({ cart }) => {
         body: JSON.stringify({ email, password }),
       });
 
+      if (user) {
+        localStorage.setItem('user', email);
       if (response.ok) {
         const user = await response.json();
         localStorage.setItem('user', user.email);
         setIsLoggedIn(true);
         fetchUserProfile(user.email);
         alert("Sign In successful");
+        showForm('none');
+        setSignInError("");
         setShowSignInForm(false);
         setSignInError("");
       } else {
@@ -163,6 +177,88 @@ const Navbar = ({ cart }) => {
     }
   };
 
+
+
+
+  const addToCart = async (item_id, quantity = 1) => {
+    const user_id = 1; // Replace with actual user ID
+
+    try {
+      const response = await fetch('/api/cart/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ user_id, item_id, quantity }),
+      });
+
+      if (response.ok) {
+        alert("Item added to cart");
+      } else {
+        const data = await response.json();
+        alert(data.message);
+      }
+    } catch (error) {
+      console.error("Error adding item to cart:", error);
+    }
+  };
+
+  // Function to view cart
+  const viewCart = async () => {
+    const user_id = 1; // Replace with actual user ID
+
+    try {
+      const response = await fetch(`/api/cart/${user_id}`);
+      const data = await response.json();
+      console.log(data); // Handle displaying cart items as needed
+    } catch (error) {
+      console.error("Error fetching cart:", error);
+    }
+  };
+
+  // Function to update cart item
+  const updateCartItem = async (cart_id, item_id, quantity) => {
+    try {
+      const response = await fetch('/api/cart/update', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ cart_id, item_id, quantity }),
+      });
+
+      if (response.ok) {
+        alert("Cart updated");
+      } else {
+        const data = await response.json();
+        alert(data.message);
+      }
+    } catch (error) {
+      console.error("Error updating cart item:", error);
+    }
+  };
+
+  // Function to delete item from cart
+  const deleteFromCart = async (cart_id, item_id) => {
+    try {
+      const response = await fetch('/api/cart/delete', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ cart_id, item_id }),
+      });
+
+      if (response.ok) {
+        alert("Item deleted from cart");
+      } else {
+        const data = await response.json();
+        alert(data.message);
+      }
+    } catch (error) {
+      console.error("Error deleting item from cart:", error);
+    }
+  };
   const toggleHelpModal = () => {
     setHelpModalOpen(!isHelpModalOpen);
   };
@@ -170,6 +266,35 @@ const Navbar = ({ cart }) => {
   const closeSignInForm = () => setShowSignInForm(false);
   const closeSignUpForm = () => setShowSignUpForm(false);
 
+  const checkout = async () => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const user_id = user ? user.id : null; // Retrieve user ID from local storage
+  
+    if (!user_id) {
+      alert("You need to be logged in to proceed to checkout.");
+      return;
+    }
+  
+    try {
+      const response = await fetch(`/api/cart/checkout/${user_id}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+  
+      if (response.ok) {
+        alert("Checkout successful!");
+        // Redirect to a confirmation page or update the UI
+      } else {
+        const data = await response.json();
+        alert(data.message || "Checkout failed.");
+      }
+    } catch (error) {
+      console.error("Error during checkout:", error);
+      alert("An error occurred during checkout. Please try again later.");
+    }
+  };
   return (
     <>
       <div className="shopsphere-header">
@@ -185,10 +310,11 @@ const Navbar = ({ cart }) => {
               <img className="search-icon" src={searchIcon} alt="Search Icon" />
             </button>
           </form>
+
         </div>
 
         <div className="shopsphere-header-right-section">
-          <a className="cart-link" href="checkout.html">
+          <a className="cart-link" href="#" onClick={viewCart}> {/* View Cart Link */}
             <img className="cart-icon" src={cartIcon} alt="Cart Icon" />
             <div className="cart-quantity">{cart.length}</div>
             <div className="cart-text">Cart</div>
@@ -226,12 +352,22 @@ const Navbar = ({ cart }) => {
         {searchResults.length > 0 ? (
           <ul>
             {searchResults.map(item => (
+                <li key={item.id}>
+                    {item.item_name}
+                    <button onClick={() => addToCart(item.id, 1)}>Add to Cart</button> {/* Add to Cart Button */}
+                </li>
+            ))}
+          </ul>
+          <ul>
+            {searchResults.map(item => (
               <li key={item.id}>{item.item_name}</li>
             ))}
           </ul>
         ) : (
           <p>No items match your search.</p>
+          <p>No items match your search.</p>
         )}
+      </div>
       </div>
 
       {showSignInForm && (
@@ -256,6 +392,30 @@ const Navbar = ({ cart }) => {
         </div>
       )}
 
+      {/* Sign Up Form */}
+      <div className="form-container sign-up-form" style={{ display: 'none' }}>
+        <div className="form">
+          <form id="signUpForm" onSubmit={handleSignUp}>
+            <h2>Sign Up</h2>
+            <div className="form-group">
+              <label htmlFor="name">Name:</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+            <div className="form-group">
+              <label htmlFor="email">Email:</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+            <div className="form-group">
+              <label htmlFor="password">Password:</label>
+              <input type="password" id="password" name="password" required />
+            </div>
+            <button type="submit" id="submitButtonUp">Sign Up</button>
+            <p>Already have an account? <a href="#" id="switchToSignIn" onClick={() => showForm('sign-in-form')}>Sign In</a></p>
+          </form>
+        </div>
+      </div>
+      {isHelpModalOpen && (
+        <HelpModal onClose={toggleHelpModal} />
       {showSignUpForm && (
         <div className="form-container sign-up-form">
           <div className="form">
