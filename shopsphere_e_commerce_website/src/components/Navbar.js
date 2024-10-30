@@ -4,28 +4,24 @@ import searchIcon from "./images/search-icon.png";
 import cartIcon from "./images/cart-icon.png";
 import HelpModal from "./HelpModal";
 
-const Navbar = ({ cart }) => {
+const Navbar = ({ cart, setCart }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [signInError, setSignInError] = useState("");
   const [isHelpModalOpen, setHelpModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [userProfile, setUserProfile] = useState(null);
-  const [role, setRole] = useState('user'); // Default to 'user'
+  const [role, setRole] = useState('user');
   const [showSignInForm, setShowSignInForm] = useState(false);
-  const [showSignUpForm, setShowSignUpForm] = useState(false);
 
   useEffect(() => {
-
     const checkAuthStatus = () => {
-      const user = localStorage.getItem('user');
       const user = localStorage.getItem('user');
       setIsLoggedIn(!!user);
       if (user) {
         fetchUserProfile(user);
       }
     };
-
     checkAuthStatus();
   }, []);
 
@@ -35,7 +31,7 @@ const Navbar = ({ cart }) => {
       if (response.ok) {
         const profileData = await response.json();
         setUserProfile(profileData);
-        setRole(profileData.role); // Set user role from profile data
+        setRole(profileData.role);
       }
     } catch (error) {
       console.error('Error fetching user profile:', error);
@@ -44,15 +40,13 @@ const Navbar = ({ cart }) => {
 
   const handleAuthButtonClick = () => {
     if (isLoggedIn) {
-      // Handle logout
-      localStorage.removeItem('user');
       localStorage.removeItem('user');
       setIsLoggedIn(false);
       setUserProfile(null);
-      setRole('user'); // Reset role on logout
+      setRole('user');
       alert("Logged out successfully");
     } else {
-      setShowSignInForm(true);
+      setShowSignInForm(true);  // Show sign-in form
     }
   };
 
@@ -68,15 +62,9 @@ const Navbar = ({ cart }) => {
       const response = await fetch(`/api/search_items?q=${searchTerm}`);
       const results = await response.json();
       setSearchResults(results);
-      const response = await fetch(`/api/search_items?q=${searchTerm}`);
-      const results = await response.json();
-      setSearchResults(results);
     } catch (error) {
       console.error("Error fetching search results:", error);
-      console.error("Error fetching search results:", error);
     }
-  };
-
   };
 
   const handleSignIn = async (event) => {
@@ -93,16 +81,12 @@ const Navbar = ({ cart }) => {
         body: JSON.stringify({ email, password }),
       });
 
-      if (user) {
-        localStorage.setItem('user', email);
       if (response.ok) {
         const user = await response.json();
         localStorage.setItem('user', user.email);
         setIsLoggedIn(true);
         fetchUserProfile(user.email);
         alert("Sign In successful");
-        showForm('none');
-        setSignInError("");
         setShowSignInForm(false);
         setSignInError("");
       } else {
@@ -114,187 +98,46 @@ const Navbar = ({ cart }) => {
     }
   };
 
-  const handleSignUp = async (event) => {
-    event.preventDefault();
-    const name = event.target.name.value;
-    const email = event.target.email.value;
-    const password = event.target.password.value;
-    const selectedRole = event.target.role.value; // Get selected role
-
-    try {
-      const response = await fetch('/api/users');
-      const users = await response.json();
-
-      if (users.some(user => user.email === email)) {
-        alert("Email already exists. Please sign in.");
-        setShowSignInForm(true);
-        return;
-      }
-
-      const postResponse = await fetch('/api/users', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name, email, password, role: selectedRole }), // Include selected role
-      });
-
-      if (postResponse.ok) {
-        alert("Account created successfully");
-        setShowSignInForm(true);
-      } else {
-        alert("Error creating account");
-      }
-    } catch (error) {
-      console.error('Error during sign-up:', error);
-      alert("An error occurred. Please try again later.");
-    }
-  };
-
   const handleDeleteAccount = async () => {
-    const confirmDelete = window.confirm("Are you sure you want to delete your account? This action cannot be undone.");
-    if (!confirmDelete) return;
+    if (window.confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
+      try {
+        const response = await fetch('/api/delete_account', {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email: userProfile.email }),
+        });
 
-    try {
-      const response = await fetch('/api/users/delete', {
-        method: 'DELETE',
-        credentials: 'include' // Ensure to send cookies if required
-      });
-
-      if (response.ok) {
-        localStorage.removeItem('user');
-        setIsLoggedIn(false);
-        setUserProfile(null);
-        setRole('user'); // Reset role on account deletion
-        alert("Sad to see you leave! Account deleted successfully.");
-      } else {
-        const errorData = await response.json();
-        alert(`Error deleting account: ${errorData.error}`);
+        if (response.ok) {
+          alert("Account deleted successfully.");
+          localStorage.removeItem('user');
+          setIsLoggedIn(false);
+          setUserProfile(null);
+          setRole('user');
+        } else {
+          alert("Failed to delete account. Please try again later.");
+        }
+      } catch (error) {
+        console.error('Error deleting account:', error);
+        alert("An error occurred while trying to delete your account.");
       }
-    } catch (error) {
-      console.error('Error deleting account:', error);
-      alert("An error occurred while deleting the account. Please try again later.");
     }
   };
 
-
-
-
-  const addToCart = async (item_id, quantity = 1) => {
-    const user_id = 1; // Replace with actual user ID
-
-    try {
-      const response = await fetch('/api/cart/add', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ user_id, item_id, quantity }),
-      });
-
-      if (response.ok) {
-        alert("Item added to cart");
-      } else {
-        const data = await response.json();
-        alert(data.message);
-      }
-    } catch (error) {
-      console.error("Error adding item to cart:", error);
-    }
-  };
-
-  // Function to view cart
-  const viewCart = async () => {
-    const user_id = 1; // Replace with actual user ID
-
-    try {
-      const response = await fetch(`/api/cart/${user_id}`);
-      const data = await response.json();
-      console.log(data); // Handle displaying cart items as needed
-    } catch (error) {
-      console.error("Error fetching cart:", error);
-    }
-  };
-
-  // Function to update cart item
-  const updateCartItem = async (cart_id, item_id, quantity) => {
-    try {
-      const response = await fetch('/api/cart/update', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ cart_id, item_id, quantity }),
-      });
-
-      if (response.ok) {
-        alert("Cart updated");
-      } else {
-        const data = await response.json();
-        alert(data.message);
-      }
-    } catch (error) {
-      console.error("Error updating cart item:", error);
-    }
-  };
-
-  // Function to delete item from cart
-  const deleteFromCart = async (cart_id, item_id) => {
-    try {
-      const response = await fetch('/api/cart/delete', {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ cart_id, item_id }),
-      });
-
-      if (response.ok) {
-        alert("Item deleted from cart");
-      } else {
-        const data = await response.json();
-        alert(data.message);
-      }
-    } catch (error) {
-      console.error("Error deleting item from cart:", error);
-    }
-  };
   const toggleHelpModal = () => {
     setHelpModalOpen(!isHelpModalOpen);
   };
 
-  const closeSignInForm = () => setShowSignInForm(false);
-  const closeSignUpForm = () => setShowSignUpForm(false);
-
-  const checkout = async () => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    const user_id = user ? user.id : null; // Retrieve user ID from local storage
-  
-    if (!user_id) {
-      alert("You need to be logged in to proceed to checkout.");
-      return;
-    }
-  
-    try {
-      const response = await fetch(`/api/cart/checkout/${user_id}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-  
-      if (response.ok) {
-        alert("Checkout successful!");
-        // Redirect to a confirmation page or update the UI
-      } else {
-        const data = await response.json();
-        alert(data.message || "Checkout failed.");
-      }
-    } catch (error) {
-      console.error("Error during checkout:", error);
-      alert("An error occurred during checkout. Please try again later.");
-    }
+  const addToCart = (itemId, quantity) => {
+    const newCart = [...cart, { id: itemId, quantity }];
+    setCart(newCart);
   };
+
+  const viewCart = () => {
+    alert("Viewing cart");
+  };
+
   return (
     <>
       <div className="shopsphere-header">
@@ -305,20 +148,18 @@ const Navbar = ({ cart }) => {
         <div className="shopsphere-header-middle-section">
           <form onSubmit={handleSearch}>
             <input className="search-bar" type="text" placeholder="Search" value={searchTerm} onChange={handleSearchInputChange} />
-            {/* <input className="search-bar" type="text" placeholder="Search" value={searchTerm} onChange={handleSearchInputChange} style={{ width: '150px' }} /> */}
             <button className="search-button" type="submit">
               <img className="search-icon" src={searchIcon} alt="Search Icon" />
             </button>
           </form>
-
         </div>
 
         <div className="shopsphere-header-right-section">
-          <a className="cart-link" href="#" onClick={viewCart}> {/* View Cart Link */}
+          <button className="cart-link" onClick={viewCart}>
             <img className="cart-icon" src={cartIcon} alt="Cart Icon" />
             <div className="cart-quantity">{cart.length}</div>
             <div className="cart-text">Cart</div>
-          </a>
+          </button>
 
           <button className="signup-button" onClick={handleAuthButtonClick}>
             {isLoggedIn ? 'Log Out' : 'Sign In'}
@@ -330,10 +171,8 @@ const Navbar = ({ cart }) => {
             </div>
           )}
 
-          {isLoggedIn && role === 'admin' && ( // Check if the user is an admin
-            <button className="admin-button">
-              Admin Panel
-            </button>
+          {isLoggedIn && role === 'admin' && (
+            <button className="admin-button">Admin Panel</button>
           )}
 
           {isLoggedIn && (
@@ -352,102 +191,31 @@ const Navbar = ({ cart }) => {
         {searchResults.length > 0 ? (
           <ul>
             {searchResults.map(item => (
-                <li key={item.id}>
-                    {item.item_name}
-                    <button onClick={() => addToCart(item.id, 1)}>Add to Cart</button> {/* Add to Cart Button */}
-                </li>
-            ))}
-          </ul>
-          <ul>
-            {searchResults.map(item => (
-              <li key={item.id}>{item.item_name}</li>
+              <li key={item.id}>
+                {item.item_name}
+                <button onClick={() => addToCart(item.id, 1)}>Add to Cart</button>
+              </li>
             ))}
           </ul>
         ) : (
           <p>No items match your search.</p>
-          <p>No items match your search.</p>
         )}
       </div>
-      </div>
 
+      {/* Conditional rendering for sign-in form */}
       {showSignInForm && (
-        <div className="form-container sign-in-form">
-          <div className="form">
-            <button className="close-button" onClick={closeSignInForm}>X</button> {/* Close button */}
-            <form id="signInForm" onSubmit={handleSignIn}>
-              <h2>Sign In</h2>
-              <div className="form-group">
-                <label htmlFor="userEmail">Email:</label>
-                <input type="email" name="email" required />
-              </div>
-              <div className="form-group">
-                <label htmlFor="userPassword">Password:</label>
-                <input type="password" name="password" required />
-              </div>
-              {signInError && <p className="error-message">{signInError}</p>}
-              <button type="submit">Log In</button>
-              <button type="button" onClick={() => { setShowSignInForm(false); setShowSignUpForm(true); }}>Sign Up</button>
-            </form>
-          </div>
-        </div>
-      )}
-
-      {/* Sign Up Form */}
-      <div className="form-container sign-up-form" style={{ display: 'none' }}>
-        <div className="form">
-          <form id="signUpForm" onSubmit={handleSignUp}>
-            <h2>Sign Up</h2>
-            <div className="form-group">
-              <label htmlFor="name">Name:</label>
-              <input type="text" id="name" name="name" required />
-            </div>
-            <div className="form-group">
-              <label htmlFor="email">Email:</label>
-              <input type="email" id="email" name="email" required />
-            </div>
-            <div className="form-group">
-              <label htmlFor="password">Password:</label>
-              <input type="password" id="password" name="password" required />
-            </div>
-            <button type="submit" id="submitButtonUp">Sign Up</button>
-            <p>Already have an account? <a href="#" id="switchToSignIn" onClick={() => showForm('sign-in-form')}>Sign In</a></p>
+        <div className="sign-in-modal">
+          <form onSubmit={handleSignIn}>
+            <input type="email" name="email" placeholder="Email" required />
+            <input type="password" name="password" placeholder="Password" required />
+            <button type="submit">Sign In</button>
+            {signInError && <p className="error">{signInError}</p>}
+            <button type="button" onClick={() => setShowSignInForm(false)}>Close</button>
           </form>
         </div>
-      </div>
-      {isHelpModalOpen && (
-        <HelpModal onClose={toggleHelpModal} />
-      {showSignUpForm && (
-        <div className="form-container sign-up-form">
-          <div className="form">
-            <button className="close-button" onClick={closeSignUpForm}>X</button> {/* Close button */}
-            <form id="signUpForm" onSubmit={handleSignUp}>
-              <h2>Sign Up</h2>
-              <div className="form-group">
-                <label htmlFor="userName">Name:</label>
-                <input type="text" name="name" required />
-              </div>
-              <div className="form-group">
-                <label htmlFor="userEmail">Email:</label>
-                <input type="email" name="email" required />
-              </div>
-              <div className="form-group">
-                <label htmlFor="userPassword">Password:</label>
-                <input type="password" name="password" required />
-              </div>
-              <div className="form-group">
-                <label htmlFor="userRole">Role:</label>
-                <select name="role" value={role} onChange={(e) => setRole(e.target.value)} required>
-                  <option value="user">Regular User</option>
-                  <option value="admin">Admin User</option>
-                </select>
-              </div>
-              <button type="submit">Sign Up</button>
-              <button type="button" onClick={() => { setShowSignUpForm(false); setShowSignInForm(true); }}>Sign In</button>
-            </form>
-          </div>
-        </div>
       )}
 
+      {/* Conditional rendering for help modal */}
       {isHelpModalOpen && <HelpModal onClose={toggleHelpModal} />}
     </>
   );
